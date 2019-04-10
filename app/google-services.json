@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "625871498950",
+    "firebase_url": "https://student-hub-ec859.firebaseio.com",
+    "project_id": "student-hub-ec859",
+    "storage_bucket": "student-hub-ec859.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625871498950:android:37b5a31c6131c1a7",
+        "android_client_info": {
+          "package_name": "com.achba.studenthub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625871498950-ufsqrk3702ae99ohhb3ioq2gbhjo5l09.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.achba.studenthub",
+            "certificate_hash": "f744e7470835bc6ee4392f824e530cf6778660ea"
+          }
+        },
+        {
+          "client_id": "625871498950-f0b4bvub3dsrh8t5f7loi1j46pgbeg3b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrgjLs9YGwpZRy6-GTewEBSLDZcs_5Pxg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625871498950-f0b4bvub3dsrh8t5f7loi1j46pgbeg3b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,4 +5,24 @@
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="DefaultButton">
+        <item name="android:textColor">@color/colorDarkGray</item>
+        <item name="android:background">@color/colorLightGray</item>
+    </style>
+
+    <style name="SelectedCGPAButton">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorCGPA</item>
+    </style>
+
+    <style name="SelectedGPAButton">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorGPA</item>
+    </style>
+
+    <style name="TextLabel" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

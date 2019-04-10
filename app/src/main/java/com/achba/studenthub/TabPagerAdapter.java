@@ -5,10 +5,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-public class tabPagerAdapter extends FragmentStatePagerAdapter {
-    String[] tabArray={"TimeLine", "Notification", "Message"};
+public class TabPagerAdapter extends FragmentStatePagerAdapter {
+    String[] tabArray={"Dashboard", "Notification", "Chat"};
 
-    public tabPagerAdapter(FragmentManager fm) {
+    public TabPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -22,8 +22,8 @@ public class tabPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                TimelineFragment timelineFragment = new TimelineFragment();
-                return timelineFragment;
+                DashboardFragment dashboardFragment = new DashboardFragment();
+                return dashboardFragment;
             case 1:
                 NotificationFragment notificationFragment = new NotificationFragment();
                 return notificationFragment;
