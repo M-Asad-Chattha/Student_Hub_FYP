@@ -1,5 +1,5 @@
 # Student Hub
-Final Year Project in University of Gujrat. Purpoe is to facilitate Students for improvement in their Study activities.
+Final Year Project in [University of Gujrat](http://www.uog.edu.pk "UOG"). Purpose is to facilitate Students for improvement in their Study activities.
 
 ## Functionalities
 1. Grade Calculation
