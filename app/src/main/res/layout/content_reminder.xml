@@ -8,4 +8,8 @@
     tools:context=".ReminderActivity"
     tools:showIn="@layout/activity_reminder">
 
+    <TextView
+        android:id="@+id/calendars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>

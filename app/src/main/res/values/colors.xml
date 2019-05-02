@@ -11,5 +11,6 @@
     <color name="colorLightGray">#d4d3d3</color>
     <color name="colorGPA">#e92222</color>
     <color name="colorCGPA">#2732a4</color>
+    <color name="colorSplash_large">#F97C3C</color>
 
 </resources>
