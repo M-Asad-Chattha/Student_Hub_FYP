@@ -28,4 +28,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="SplashTheme" parent="ThemeFullSCreen">
+        <item name="android:windowBackground">@drawable/background_pre_splash</item>
+    </style>
+
 </resources>

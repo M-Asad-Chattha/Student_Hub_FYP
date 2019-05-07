@@ -7,6 +7,6 @@
         android:duration="700"
         android:fillAfter="true"
         android:fromXDelta="0%p"
-        android:toYDelta="-35%p"
+        android:toYDelta="-30%p"
         />
 </set>

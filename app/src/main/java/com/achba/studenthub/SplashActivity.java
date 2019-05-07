@@ -1,14 +1,10 @@
 package com.achba.studenthub;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -23,15 +19,16 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(Color.TRANSPARENT);
-        }
+        }*/
+
         setContentView(R.layout.activity_splash);
 
-        tvLarge=findViewById(R.id.font);
+        tvLarge=findViewById(R.id.tvLarge);
         Animation tvLargeAnimation= AnimationUtils.loadAnimation(this, R.anim.move_top_left);
         tvLarge.startAnimation(tvLargeAnimation);
 
@@ -46,9 +43,9 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 tvSmall=findViewById(R.id.tvSmall);
+                tvSmall.setVisibility(View.VISIBLE);
                 Animation tvSmallAnimation= AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move_right);
                 tvSmall.startAnimation(tvSmallAnimation);
-                tvSmall.setVisibility(View.VISIBLE);
             }
             @Override
             public void onAnimationRepeat(Animation animation) {
@@ -90,5 +87,10 @@ public class SplashActivity extends AppCompatActivity {
     public void onClickLogin(View view) {
         Intent intent=new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    public void onClickSignUp(View view) {
+            Intent intent = new Intent(this, RegistrationActivity.class);
+            startActivity(intent);
     }
 }

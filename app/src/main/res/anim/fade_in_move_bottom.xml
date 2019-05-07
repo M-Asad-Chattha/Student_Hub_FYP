@@ -9,12 +9,12 @@
         android:toAlpha="1"
         />
 
-    <translate
+    <!--<translate
         android:duration="1000"
         android:fillAfter="true"
         android:fromXDelta="0%p"
-        android:toYDelta="15%p"
-        />
+        android:toYDelta="20%p"
+        />-->
 </set>
 
 
