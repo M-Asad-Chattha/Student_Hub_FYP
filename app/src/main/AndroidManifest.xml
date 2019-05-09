@@ -23,7 +23,7 @@
         android:roundIcon="@mipmap/ic_launcherd_demo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".ProfileActivity"></activity>
         <activity
             android:name=".PreSplashActivity"
             android:theme="@style/SplashTheme">
