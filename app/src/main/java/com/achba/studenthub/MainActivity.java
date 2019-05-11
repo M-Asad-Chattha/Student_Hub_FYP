@@ -2,7 +2,6 @@ package com.achba.studenthub;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
@@ -113,10 +112,14 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_profile) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_events) {
 
         } else if (id == R.id.nav_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 

@@ -32,4 +32,11 @@
         <item name="android:windowBackground">@drawable/background_pre_splash</item>
     </style>
 
+    <style name="ProfileTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@color/my_text_color</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:statusBarColor">@color/colorTransparent</item>
+    </style>
+
 </resources>

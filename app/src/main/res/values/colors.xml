@@ -15,5 +15,7 @@
 
     <color name="colorBrand">#2ac8cc</color>
 
+    <color name="my_text_color">#ffffff</color>
+    <color name="colorTransparent">#7a3c3c3d</color>
 
 </resources>

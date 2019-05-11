@@ -34,4 +34,5 @@ dependencies {
     implementation 'com.github.Shashank02051997:FancyGifDialog-Android:1.1'
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.google.firebase:firebase-auth:16.1.0'
+    implementation 'com.github.Shashank02051997:FancyAboutPage-Android:2.6'
 }
