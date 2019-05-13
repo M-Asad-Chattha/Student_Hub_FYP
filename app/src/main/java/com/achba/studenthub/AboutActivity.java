@@ -1,6 +1,8 @@
 package com.achba.studenthub;
 
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,5 +41,11 @@ public class AboutActivity extends AppCompatActivity {
         fancyAboutPage.addGitHubLink("https://github.com/Shashank02051997");
 
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             // Handle the camera action
         } else if (id == R.id.nav_profile) {
-            Intent intent = new Intent(this, AboutActivity.class);
+            Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_events) {

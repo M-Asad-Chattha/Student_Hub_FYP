@@ -144,9 +144,9 @@ public class RegistrationActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
+            // TODO: 5/13/2019  Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-//            showProgress(true);
+            //showProgress(true);
             firebaseAuth();
         }
     }
@@ -162,12 +162,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            // TODO: 5/13/2019 Hide Progress loading dialog
                             if (task.isSuccessful()) {
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
                                 Toast.makeText(getApplicationContext(), "User register successfully.", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Registration failed.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     })
