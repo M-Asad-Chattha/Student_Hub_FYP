@@ -1,5 +1,6 @@
 package com.achba.studenthub;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -27,6 +28,7 @@ public class RegistrationActivity extends AppCompatActivity {
     View focusView = null;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +149,11 @@ public class RegistrationActivity extends AppCompatActivity {
             // TODO: 5/13/2019  Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             //showProgress(true);
+            progress = new ProgressDialog(this);
+            progress.setTitle("Loading");
+            progress.setMessage("Wait while loading...");
+            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.show();
             firebaseAuth();
         }
     }
@@ -163,6 +170,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             // TODO: 5/13/2019 Hide Progress loading dialog
+                            progress.dismiss();
                             if (task.isSuccessful()) {
                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(intent);
