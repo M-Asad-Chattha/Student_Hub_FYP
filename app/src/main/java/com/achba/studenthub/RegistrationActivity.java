@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,6 +24,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+
+import static android.content.ContentValues.TAG;
 
 public class RegistrationActivity extends AppCompatActivity {
 //    private AutoCompleteTextView mEmailView;
@@ -199,9 +203,23 @@ public class RegistrationActivity extends AppCompatActivity {
                             // TODO: 5/13/2019 Hide Progress loading dialog
                             progress.dismiss();
                             if (task.isSuccessful()) {
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                FirebaseAuth auth = FirebaseAuth.getInstance();
+                                FirebaseUser user = auth.getCurrentUser();
+
+                                user.sendEmailVerification()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(RegistrationActivity.this, "Register successfully, Please check you email for verification.", Toast.LENGTH_SHORT).show();
+                                                }else{
+                                                    Toast.makeText(RegistrationActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                                 startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "User register successfully.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "click on verify in email.", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
