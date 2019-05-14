@@ -79,17 +79,17 @@ public class LoginActivity extends AppCompatActivity {
 
         mEmailView = findViewById(R.id.email);
         mPasswordView = findViewById(R.id.password);
-        resetFields();
+        //resetFields();  //todo uncomment after error resolve
 
         firebaseAuth = FirebaseAuth.getInstance();
-        authStateListener = new FirebaseAuth.AuthStateListener() {
+        /*authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 updateStatus();
             }
-        };
+        };*/
     }
-//df
+
     @Override
     public void onResume() {
         super.onResume();
@@ -154,12 +154,14 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                updateStatus();
-                                /*Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);*/
-                                Toast.makeText(getApplicationContext(), "Login successfully.", Toast.LENGTH_SHORT).show();
-                                /*btnSignIn.setVisibility(View.INVISIBLE);
-                                btnSignOut.setVisibility(View.VISIBLE);*/
+                                if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                                    updateStatus();
+                                    Toast.makeText(getApplicationContext(), "Login successfully.", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(getApplicationContext(), "Please verify your email address.", Toast.LENGTH_SHORT).show();
+                                    resetFields();
+                                }
+
                             } else {
                                 Toast.makeText(getApplicationContext(), "Login failed.", Toast.LENGTH_SHORT).show();
                             }
@@ -184,12 +186,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
+        /*//firebaseAuth.addAuthStateListener(authStateListener);
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
+        if (user.isEmailVerified()) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-        }
+        }else{
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }*/
     }
 
     @Override
@@ -200,8 +205,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateStatus() {
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
+
+        if (firebaseAuth.getCurrentUser() != null) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else {
