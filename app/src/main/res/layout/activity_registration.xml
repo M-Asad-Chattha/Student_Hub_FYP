@@ -9,37 +9,38 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="20dp"
         android:background="@drawable/book_library"
-        tools:context=".RegistrationActivity"
+        android:fitsSystemWindows="true"
         android:orientation="vertical"
-        android:fitsSystemWindows="true">
+        android:paddingBottom="20dp"
+        tools:context=".RegistrationActivity">
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:src="@drawable/logo"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:textColor="@color/colorWhite"
-            android:text="Student Hub"
-            android:textAllCaps="true"
-            android:fontFamily="sans-serif"
-            android:textAlignment="center"/>
+            android:src="@drawable/logo" />
 
         <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="Student Hub"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite" />
+
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:textColor="@color/colorWhite"
             android:text="Create Account"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -51,16 +52,15 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Full Name"
-                android:padding="10dp"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true"
-                android:background="@drawable/rounded_edittext"
-                />
+                android:padding="10dp"
+                android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -73,12 +73,66 @@
                 android:id="@+id/email_registration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
                 android:hint="@string/prompt_email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:singleLine="true"
+                android:padding="10dp"
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>
+
+        <com.libizo.CustomEditText
+            android:id="@+id/password_registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            app:libIZO_clearIconTint="#8f1f15"
+            app:libIZO_setClearIconVisible="true"
+            app:libIZO_setPrefixTextColor="#FF4081"
+            app:libIZO_setStrokeWidth="2dp" />
+
+        <com.libizo.CustomEditText
+            android:id="@+id/password_registration_agin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rounded_edittext"
+            android:hint="Re-Type Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            app:libIZO_clearIconTint="#8f1f15"
+            app:libIZO_setClearIconVisible="true"
+            app:libIZO_setPrefixTextColor="#FF4081"
+            app:libIZO_setStrokeWidth="2dp" />
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <EditText
+                android:id="@+id/password_registration_OLD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/rounded_edittext"
-                android:padding="10dp"/>
+                android:hint="@string/prompt_password"
+                android:imeActionId="6"
+                android:imeActionLabel="@string/action_sign_in_short"
+                android:imeOptions="actionUnspecified"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -88,69 +142,45 @@
             android:layout_marginRight="30dp">
 
             <EditText
-                android:id="@+id/password_registration"
+                android:id="@+id/password_registration_agin_OLD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
                 android:hint="@string/prompt_password"
-                android:padding="10dp"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:singleLine="true"
-                android:background="@drawable/rounded_edittext"
-                />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
-
-            <EditText
-                android:id="@+id/password_registration_agin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
                 android:padding="10dp"
-                android:imeActionId="6"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:background="@drawable/rounded_edittext"
-                />
+                android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/email_register_button"
             style="N?android:textAppearanceSmall"
-            android:background="@drawable/rounded_button"
-            android:textColor="@color/colorWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
-            android:text="Register"
+            android:background="@drawable/rounded_button"
             android:onClick="onRegister"
-            />
+            android:text="Register"
+            android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/email_cancel_button"
             style="N?android:textAppearanceSmall"
-            android:background="@drawable/rounded_stroke_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_stroke_button"
+            android:onClick="onCancel"
             android:text="Cancel"
-            android:textColor="@color/colorWhite"
-            android:onClick="onCancel" />
+            android:textColor="@color/colorWhite" />
 
 
     </LinearLayout>
