@@ -1,7 +1,9 @@
 package com.achba.studenthub;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -241,15 +243,22 @@ public class RegistrationActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-                                                    Toast.makeText(RegistrationActivity.this, "Register successfully, Please check you email for verification.", Toast.LENGTH_SHORT).show();
+                                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegistrationActivity.this);
+                                                    builder.setMessage("Register successfully, Please check you email for verification.")
+                                                            .setCancelable(false)
+                                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                                public void onClick(DialogInterface dialog, int id) {
+                                                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                                                    startActivity(intent);
+                                                                }
+                                                            });
+                                                    AlertDialog alert = builder.create();
+                                                    alert.show();
                                                 }else{
                                                     Toast.makeText(RegistrationActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         });
-                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                                startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "click on verify in email.", Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }

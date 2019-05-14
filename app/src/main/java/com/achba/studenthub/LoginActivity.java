@@ -5,8 +5,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -106,6 +108,8 @@ public class LoginActivity extends AppCompatActivity {
         if (user !=null && user.isEmailVerified()) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        }else{
+            return;
         }
 
         //resetFields();  //todo uncomment after error resolve
@@ -215,7 +219,18 @@ public class LoginActivity extends AppCompatActivity {
                                     updateStatus();
                                     Toast.makeText(getApplicationContext(), "Login successfully.", Toast.LENGTH_SHORT).show();
                                 }else {
-                                    Toast.makeText(getApplicationContext(), "Please verify your email address.", Toast.LENGTH_SHORT).show();
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                    builder.setMessage("Please verify your email address.")
+                                            .setCancelable(false)
+                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    //do things
+                                                }
+                                            });
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+//                                    Toast.makeText(getApplicationContext(), "Please verify your email address.", Toast.LENGTH_SHORT).show();
                                     resetFields();
                                 }
 
