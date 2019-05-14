@@ -1,6 +1,7 @@
 package com.achba.studenthub;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -9,12 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -36,6 +41,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
     ProgressDialog progress;
     Spinner spinnerProgram, spinnerSemester, spinnerSection, spinnerCampus;
+    LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,17 @@ public class RegistrationActivity extends AppCompatActivity {
         spinnerSemester = findViewById(R.id.spinnerSemester);
         spinnerSection = findViewById(R.id.spinnerSection);
         spinnerCampus = findViewById(R.id.spinnerCampus);
+        layout = findViewById(R.id.layout);
+
+        layout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
 
         ArrayAdapter<CharSequence> adapterProgram = ArrayAdapter.createFromResource(this,
                 R.array.spinnerProgram, android.R.layout.simple_spinner_item);
@@ -100,9 +117,22 @@ public class RegistrationActivity extends AppCompatActivity {
         Toast.makeText(this, "Registration failed.", Toast.LENGTH_SHORT).show();
 
     }
+    public void hideKeyboard(){
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 
     public void onRegister(View view) {
+        hideKeyboard();
         attemptLogin();
+    }
+
+    public void hideKeyboard(View view){
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private void attemptLogin(){

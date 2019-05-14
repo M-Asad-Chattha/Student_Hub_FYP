@@ -12,9 +12,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class SplashActivity extends AppCompatActivity {
     TextView tvLarge, tvSmall;
     Button btnLogin;
+    FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +86,14 @@ public class SplashActivity extends AppCompatActivity {
                 new float[]{0.5,1},
                 Shader.TileMode.CLAMP);
         secondTextView.getPaint().setShader(textShader);*/
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        if (user !=null && user.isEmailVerified()) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
 
     }
 
