@@ -11,8 +11,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,12 +25,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class RegistrationActivity extends AppCompatActivity {
-    private AutoCompleteTextView mEmailView;
-    private EditText mName, mPasswordView, mPasswordAgainView;
+//    private AutoCompleteTextView mEmailView;
+    private EditText mName, mPasswordView, mPasswordAgainView, mEmailView;
     View focusView = null;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     ProgressDialog progress;
+    Spinner spinnerProgram, spinnerSemester, spinnerSection, spinnerCampus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +50,33 @@ public class RegistrationActivity extends AppCompatActivity {
         mEmailView=findViewById(R.id.email_registration);
         mPasswordView=findViewById(R.id.password_registration);
         mPasswordAgainView = findViewById(R.id.password_registration_agin);
+        spinnerProgram = findViewById(R.id.spinnerProgram);
+        spinnerSemester = findViewById(R.id.spinnerSemester);
+        spinnerSection = findViewById(R.id.spinnerSection);
+        spinnerCampus = findViewById(R.id.spinnerCampus);
+
+        ArrayAdapter<CharSequence> adapterProgram = ArrayAdapter.createFromResource(this,
+                R.array.spinnerProgram, android.R.layout.simple_spinner_item);
+        adapterProgram.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProgram.setAdapter(adapterProgram);
+
+        ArrayAdapter<CharSequence> adapterSemester = ArrayAdapter.createFromResource(this,
+                R.array.spinnerSemester, android.R.layout.simple_spinner_item);
+        adapterSemester.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSemester.setAdapter(adapterSemester);
+
+        ArrayAdapter<CharSequence> adapterSection = ArrayAdapter.createFromResource(this,
+                R.array.spinnerSection, android.R.layout.simple_spinner_item);
+        adapterSection.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSection.setAdapter(adapterSection);
+
+        ArrayAdapter<CharSequence> adapterCampus = ArrayAdapter.createFromResource(this,
+                R.array.spinnerCampus, android.R.layout.simple_spinner_item);
+        adapterCampus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCampus.setAdapter(adapterCampus);
+//        String spinnerValue = spinnerProgram.getSelectedItem().toString();
 
         resetFields();
-
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
