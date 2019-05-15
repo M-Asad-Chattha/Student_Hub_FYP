@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "625871498950-1t2vmvb40n919sc6s6cq6lrd4osoj8sv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.achba.studenthub",
+            "certificate_hash": "70c6c773c5f78702163135f9025ae8635ad3cc95"
+          }
+        },
+        {
           "client_id": "625871498950-ufsqrk3702ae99ohhb3ioq2gbhjo5l09.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -33,20 +41,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "625871498950-f0b4bvub3dsrh8t5f7loi1j46pgbeg3b.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
