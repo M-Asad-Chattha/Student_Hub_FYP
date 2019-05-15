@@ -15,6 +15,8 @@ public class ProfileActivity extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+        //9_Login and Master branches merged
     }
 
     @Override
