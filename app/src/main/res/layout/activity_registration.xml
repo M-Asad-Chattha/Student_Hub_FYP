@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@drawable/book_library"
+    android:background="@drawable/blur_background"
     android:fitsSystemWindows="true"
     android:gravity="center_horizontal"
     tools:context=".RegistrationActivity">
@@ -44,7 +44,7 @@
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="40dp"
             android:text="Create Account"
             android:textAlignment="center"
             android:textColor="@color/colorWhite" />
@@ -77,7 +77,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/rounded_button_opacity"
             android:hint="Full Name"
             android:inputType="text"
             android:padding="10dp"
@@ -91,7 +91,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/rounded_button_opacity"
             android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="10dp"
@@ -111,7 +111,7 @@
                 android:id="@+id/spinnerProgram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/rounded_button_opacity"
                 android:padding="10dp" />
 
             <ImageView
@@ -136,7 +136,7 @@
                 android:id="@+id/spinnerSemester"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/rounded_button_opacity"
                 android:padding="10dp" />
 
             <ImageView
@@ -161,7 +161,7 @@
                 android:id="@+id/spinnerSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/rounded_button_opacity"
                 android:padding="10dp" />
 
             <ImageView
@@ -186,7 +186,7 @@
                 android:id="@+id/spinnerCampus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
+                android:background="@drawable/rounded_button_opacity"
                 android:padding="10dp" />
 
             <ImageView
@@ -205,7 +205,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/rounded_button_opacity"
             android:hint="Password"
             android:inputType="textPassword"
             android:padding="10dp"
@@ -219,7 +219,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
-            android:background="@drawable/rounded_edittext"
+            android:background="@drawable/rounded_button_opacity"
             android:hint="Re-Type Password"
             android:inputType="textPassword"
             android:padding="10dp"
