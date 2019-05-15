@@ -17,5 +17,6 @@
 
     <color name="my_text_color">#ffffff</color>
     <color name="colorTransparent">#7a3c3c3d</color>
+    <color name="colorTransparentOpacity">#6D0021FF</color>
 
 </resources>

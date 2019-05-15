@@ -45,7 +45,7 @@
                 style="@style/Base.TextAppearance.AppCompat.Title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="40dp"
                 android:text="Login"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite" />
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/rounded_edittext"
                 android:hint="Email"
@@ -83,7 +83,6 @@
                 style="N?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/email_login_form"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
@@ -93,6 +92,19 @@
                 android:textColor="@color/colorWhite" />
 
             <Button
+                android:id="@+id/btn_forgetPassword"
+                style="N?android:textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rounded_button_stroke"
+                android:onClick="onForgetPassword"
+                android:text="Forget Password"
+                android:textColor="@android:color/black" />
+
+            <Button
                 android:id="@+id/email_registration_button"
                 style="N?android:textAppearanceSmall"
                 android:layout_width="match_parent"
@@ -100,7 +112,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
-                android:background="@drawable/rounded_stroke_button"
+                android:background="@drawable/rounded_button_stroke"
                 android:onClick="onRegistration"
                 android:text="Registration" />
 

@@ -304,6 +304,11 @@ public class LoginActivity extends AppCompatActivity {
         focusView = mEmailView;
         focusView.requestFocus();
     }
+
+    public void onForgetPassword(View view) {
+        Intent intent = new Intent(this, ForgetPasswordActivity.class);
+        startActivity(intent);
+    }
 }
 /**
  * A login screen that offers login via email/password.

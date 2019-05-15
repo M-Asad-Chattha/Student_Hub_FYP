@@ -23,10 +23,13 @@
         android:roundIcon="@mipmap/ic_launcherd_demo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:label="Forget Password"
+            android:name=".ForgetPasswordActivity"
+            android:theme="@style/ProfileTheme"/>
         <activity
             android:name=".ProfileActivity"
-            android:theme="@style/ProfileTheme"/>
+            android:theme="@style/ProfileTheme" />
         <activity
             android:name=".AboutActivity"
             android:label="Profile"
