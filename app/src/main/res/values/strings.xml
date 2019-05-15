@@ -59,7 +59,7 @@
     <string name="title_activity_CGPA">CGPA Calculator</string>
 
     <!-- Strings related to TODO_Remainder -->
-    <string name="title_activity_TODO">TODO</string>
+    <string name="title_activity_TODO">Reminders</string>
 
     <!-- Strings related to Roommate Finder-->
     <string name="title_activity_roommate">Roommate Finder</string>
@@ -162,4 +162,38 @@
     </style>
 
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_reminder">ReminderActivity</string>
+
+    <string-array name="spinnerProgram">
+        <item>Select Degree Program</item>
+        <item>SE</item>
+        <item>IT</item>
+        <item>CS</item>
+    </string-array>
+
+    <string-array name="spinnerSemester">
+        <item>Select Semester</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="spinnerSection">
+        <item>Select Section</item>
+        <item>A</item>
+        <item>B</item>
+    </string-array>
+
+    <string-array name="spinnerCampus">
+        <item>Select campus</item>
+        <item>Hafiz Hayat</item>
+        <item>Marghzar</item>
+    </string-array>
+
+
 </resources>

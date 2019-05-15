@@ -11,5 +11,12 @@
     <color name="colorLightGray">#d4d3d3</color>
     <color name="colorGPA">#e92222</color>
     <color name="colorCGPA">#2732a4</color>
+    <color name="colorSplash_large">#F97C3C</color>
+
+    <color name="colorBrand">#2ac8cc</color>
+
+    <color name="my_text_color">#ffffff</color>
+    <color name="colorTransparent">#7a3c3c3d</color>
+    <color name="colorTransparentOpacity">#6D0021FF</color>
 
 </resources>

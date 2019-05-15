@@ -1,5 +1,9 @@
 package com.achba.studenthub;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -7,11 +11,18 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,13 +31,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+
+import static android.content.ContentValues.TAG;
 
 public class RegistrationActivity extends AppCompatActivity {
-    private AutoCompleteTextView mEmailView;
-    private EditText mName, mPasswordView, mPasswordAgainView;
+//    private AutoCompleteTextView mEmailView;
+    private EditText mName, mPasswordView, mPasswordAgainView, mEmailView;
     View focusView = null;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    ProgressDialog progress;
+    Spinner spinnerProgram, spinnerSemester, spinnerSection, spinnerCampus;
+    LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +62,44 @@ public class RegistrationActivity extends AppCompatActivity {
         mEmailView=findViewById(R.id.email_registration);
         mPasswordView=findViewById(R.id.password_registration);
         mPasswordAgainView = findViewById(R.id.password_registration_agin);
+        spinnerProgram = findViewById(R.id.spinnerProgram);
+        spinnerSemester = findViewById(R.id.spinnerSemester);
+        spinnerSection = findViewById(R.id.spinnerSection);
+        spinnerCampus = findViewById(R.id.spinnerCampus);
+        layout = findViewById(R.id.layout);
+
+        layout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
+
+        ArrayAdapter<CharSequence> adapterProgram = ArrayAdapter.createFromResource(this,
+                R.array.spinnerProgram, android.R.layout.simple_spinner_item);
+        adapterProgram.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProgram.setAdapter(adapterProgram);
+
+        ArrayAdapter<CharSequence> adapterSemester = ArrayAdapter.createFromResource(this,
+                R.array.spinnerSemester, android.R.layout.simple_spinner_item);
+        adapterSemester.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSemester.setAdapter(adapterSemester);
+
+        ArrayAdapter<CharSequence> adapterSection = ArrayAdapter.createFromResource(this,
+                R.array.spinnerSection, android.R.layout.simple_spinner_item);
+        adapterSection.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSection.setAdapter(adapterSection);
+
+        ArrayAdapter<CharSequence> adapterCampus = ArrayAdapter.createFromResource(this,
+                R.array.spinnerCampus, android.R.layout.simple_spinner_item);
+        adapterCampus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCampus.setAdapter(adapterCampus);
+//        String spinnerValue = spinnerProgram.getSelectedItem().toString();
 
         resetFields();
-
         firebaseAuth = FirebaseAuth.getInstance();
     }
 
@@ -67,9 +119,22 @@ public class RegistrationActivity extends AppCompatActivity {
         Toast.makeText(this, "Registration failed.", Toast.LENGTH_SHORT).show();
 
     }
+    public void hideKeyboard(){
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 
     public void onRegister(View view) {
+        hideKeyboard();
         attemptLogin();
+    }
+
+    public void hideKeyboard(View view){
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     private void attemptLogin(){
@@ -144,9 +209,14 @@ public class RegistrationActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
+            // TODO: 5/13/2019  Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-//            showProgress(true);
+            //showProgress(true);
+            progress = new ProgressDialog(this);
+            progress.setTitle("Loading");
+            progress.setMessage("Wait while loading...");
+            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.show();
             firebaseAuth();
         }
     }
@@ -162,12 +232,35 @@ public class RegistrationActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            // TODO: 5/13/2019 Hide Progress loading dialog
+                            progress.dismiss();
                             if (task.isSuccessful()) {
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "User register successfully.", Toast.LENGTH_SHORT).show();
+                                FirebaseAuth auth = FirebaseAuth.getInstance();
+                                FirebaseUser user = auth.getCurrentUser();
+
+                                user.sendEmailVerification()
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegistrationActivity.this);
+                                                    builder.setMessage("Register successfully, Please check you email for verification.")
+                                                            .setCancelable(false)
+                                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                                public void onClick(DialogInterface dialog, int id) {
+                                                                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                                                                    startActivity(intent);
+                                                                }
+                                                            });
+                                                    AlertDialog alert = builder.create();
+                                                    alert.show();
+                                                }else{
+                                                    Toast.makeText(RegistrationActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
                             } else {
-                                Toast.makeText(getApplicationContext(), "Registration failed.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     })

@@ -43,11 +43,11 @@ public class DashboardFragment extends Fragment  {
             }
         });
 
-        cardTODO = view.findViewById(R.id.card_todo);
+        cardTODO = view.findViewById(R.id.card_reminder);
         cardTODO.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), TODOActivity.class);
+                Intent intent = new Intent(getContext(), ReminderActivity.class);
                 startActivity(intent);
             }
         });

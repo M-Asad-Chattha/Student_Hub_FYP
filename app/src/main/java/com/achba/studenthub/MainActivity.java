@@ -1,8 +1,9 @@
 package com.achba.studenthub;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
@@ -14,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    ProgressDialog progress;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
+        progress = new ProgressDialog(this);
     }
 
     @Override
@@ -97,10 +101,13 @@ public class MainActivity extends AppCompatActivity
         firebaseAuth.signOut();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
+            stopLoading();
             Toast.makeText(getApplicationContext(), "Log Out failed.", Toast.LENGTH_SHORT).show();
         } else {
+            stopLoading();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(intent);
+            Toast.makeText(getApplicationContext(), "Log Out Successfully.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -110,18 +117,31 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_home) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_profile) {
+            Intent intent = new Intent(this, ProfileActivity.class);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_events) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_about) {
+            Intent intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
+        }else if (id == R.id.nav_settings) {
+
+        }else if (id == R.id.nav_feedback) {
+
+        }else if (id == R.id.nav_help) {
+
+        }else if (id == R.id.nav_logout) {
+            startLoading();
+            signOut();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -132,5 +152,16 @@ public class MainActivity extends AppCompatActivity
     public void onClickNotification(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    private void startLoading(){
+        progress.setTitle("Loading");
+        progress.setMessage("Wait while loading...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
+    }
+
+    private void stopLoading(){
+        progress.dismiss();
     }
 }

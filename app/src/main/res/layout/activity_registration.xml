@@ -1,158 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/blur_background"
+    android:fitsSystemWindows="true"
+    android:gravity="center_horizontal"
+    tools:context=".RegistrationActivity">
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
+        android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="20dp"
-        android:background="@drawable/book_library"
-        tools:context=".RegistrationActivity"
         android:orientation="vertical"
-        android:fitsSystemWindows="true">
+        android:paddingBottom="20dp">
 
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
-            android:src="@drawable/logo"
-            />
+            android:src="@drawable/logo" />
+
         <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:textColor="@color/colorWhite"
-            android:text="Student Hub"
-            android:textAllCaps="true"
             android:fontFamily="sans-serif"
-            android:textAlignment="center"/>
+            android:text="Student Hub"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite" />
+
 
         <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            style="@style/Base.TextAppearance.AppCompat.Title"
-            android:textColor="@color/colorWhite"
+            android:layout_marginTop="40dp"
             android:text="Create Account"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite" />
 
-        <android.support.design.widget.TextInputLayout
+        <!--<android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp">
 
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/name1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Full Name"
-                android:padding="10dp"
                 android:imeActionId="6"
                 android:imeActionLabel="@string/action_sign_in_short"
                 android:imeOptions="actionUnspecified"
                 android:inputType="text"
                 android:maxLines="1"
-                android:singleLine="true"
-                android:background="@drawable/rounded_edittext"
-                />
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
-
-            <AutoCompleteTextView
-                android:id="@+id/email_registration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:background="@drawable/rounded_edittext"
-                android:padding="10dp"/>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
-
-            <EditText
-                android:id="@+id/password_registration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
                 android:padding="10dp"
-                android:imeActionId="6"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:background="@drawable/rounded_edittext"
-                />
-        </android.support.design.widget.TextInputLayout>
+                android:singleLine="true" />
+        </android.support.design.widget.TextInputLayout>-->
 
-        <android.support.design.widget.TextInputLayout
+        <com.libizo.CustomEditText
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button_opacity"
+            android:hint="Full Name"
+            android:inputType="text"
+            android:padding="10dp"
+            app:libIZO_clearIconTint="#8f1f15"
+            app:libIZO_setClearIconVisible="true" />
 
-            <EditText
-                android:id="@+id/password_registration_agin"
+        <com.libizo.CustomEditText
+            android:id="@+id/email_registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button_opacity"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            app:libIZO_clearIconTint="#8f1f15"
+            app:libIZO_setClearIconVisible="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerProgram"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/prompt_password"
-                android:padding="10dp"
-                android:imeActionId="6"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:background="@drawable/rounded_edittext"
-                />
-        </android.support.design.widget.TextInputLayout>
+                android:background="@drawable/rounded_button_opacity"
+                android:padding="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_down" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerSemester"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_opacity"
+                android:padding="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_down" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_opacity"
+                android:padding="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_down" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight=".28"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/spinnerCampus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_button_opacity"
+                android:padding="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_arrow_down" />
+        </RelativeLayout>
+
+        <com.libizo.CustomEditText
+            android:id="@+id/password_registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button_opacity"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            app:libIZO_clearIconTint="#8f1f15"
+            app:libIZO_setClearIconVisible="true" />
+
+        <com.libizo.CustomEditText
+            android:id="@+id/password_registration_agin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button_opacity"
+            android:hint="Re-Type Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            app:libIZO_clearIconTint="#8f1f15"
+            app:libIZO_setClearIconVisible="true"
+            app:libIZO_setStrokeWidth="2dp" />
+
 
         <Button
             android:id="@+id/email_register_button"
             style="N?android:textAppearanceSmall"
-            android:background="@drawable/rounded_button"
-            android:textColor="@color/colorWhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
-            android:text="Register"
+            android:background="@drawable/rounded_button"
             android:onClick="onRegister"
-            />
+            android:text="Register"
+            android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/email_cancel_button"
             style="N?android:textAppearanceSmall"
-            android:background="@drawable/rounded_stroke_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button_stroke"
+            android:onClick="onCancel"
             android:text="Cancel"
-            android:textColor="@color/colorWhite"
-            android:onClick="onCancel" />
+            android:textColor="@color/colorWhite" />
 
 
     </LinearLayout>
 
 </ScrollView>
+</RelativeLayout>

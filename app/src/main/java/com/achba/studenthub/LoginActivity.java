@@ -4,6 +4,11 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -26,16 +31,20 @@ import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,13 +64,15 @@ import java.util.List;
 import static android.Manifest.permission.READ_CONTACTS;
 
 public class LoginActivity extends AppCompatActivity {
-    private AutoCompleteTextView mEmailView;
+    private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
     private View focusView = null;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    ProgressDialog progress;
+    LinearLayout layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,15 +90,38 @@ public class LoginActivity extends AppCompatActivity {
 
         mEmailView = findViewById(R.id.email);
         mPasswordView = findViewById(R.id.password);
-        resetFields();
+        layout = findViewById(R.id.layout);
+
+        layout.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View view, MotionEvent ev)
+            {
+                hideKeyboard(view);
+                return false;
+            }
+        });
 
         firebaseAuth = FirebaseAuth.getInstance();
-        authStateListener = new FirebaseAuth.AuthStateListener() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        if (user !=null && user.isEmailVerified()) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }else{
+            return;
+        }
+
+        //resetFields();  //todo uncomment after error resolve
+
+
+        /*authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 updateStatus();
             }
-        };
+        };*/
+
     }
 
     @Override
@@ -97,7 +131,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLogin(View view) {
+        hideKeyboard();
         attemptLogin();
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
+    }
+
+    public void hideKeyboard(){
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    public void hideKeyboard(View view){
+        InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
     public void onRegistration(View view) {
@@ -137,6 +192,11 @@ public class LoginActivity extends AppCompatActivity {
             // form field with an error.
             focusView.requestFocus();
         } else {
+            progress = new ProgressDialog(this);
+            progress.setTitle("Loading");
+            progress.setMessage("Wait while loading...");
+            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.show();
             firebaseAuth();
         }
 
@@ -153,13 +213,27 @@ public class LoginActivity extends AppCompatActivity {
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            progress.dismiss();
                             if (task.isSuccessful()) {
-                                updateStatus();
-                                /*Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);*/
-                                Toast.makeText(getApplicationContext(), "Login successfully.", Toast.LENGTH_SHORT).show();
-                                /*btnSignIn.setVisibility(View.INVISIBLE);
-                                btnSignOut.setVisibility(View.VISIBLE);*/
+                                if(firebaseAuth.getCurrentUser().isEmailVerified()){
+                                    updateStatus();
+                                    Toast.makeText(getApplicationContext(), "Login successfully.", Toast.LENGTH_SHORT).show();
+                                }else {
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                    builder.setMessage("Please verify your email address.")
+                                            .setCancelable(false)
+                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    //do things
+                                                }
+                                            });
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+//                                    Toast.makeText(getApplicationContext(), "Please verify your email address.", Toast.LENGTH_SHORT).show();
+                                    resetFields();
+                                }
+
                             } else {
                                 Toast.makeText(getApplicationContext(), "Login failed.", Toast.LENGTH_SHORT).show();
                             }
@@ -181,16 +255,19 @@ public class LoginActivity extends AppCompatActivity {
         //}
     }
 
-    @Override
+    /*@Override
     protected void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
+        //firebaseAuth.addAuthStateListener(authStateListener);
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
+        if (user.isEmailVerified()) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        }else{
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
-    }
+    }*/
 
     @Override
     protected void onStop() {
@@ -200,8 +277,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateStatus() {
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
+
+        if (firebaseAuth.getCurrentUser() != null) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else {
@@ -226,6 +303,11 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView.setText(null);
         focusView = mEmailView;
         focusView.requestFocus();
+    }
+
+    public void onForgetPassword(View view) {
+        Intent intent = new Intent(this, ForgetPasswordActivity.class);
+        startActivity(intent);
     }
 }
 /**

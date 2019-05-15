@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:drawable="@drawable/white_texture"/>
+
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/ic_book_large_web"/>
+    </item>
+
+    <item
+        android:top="500dp"
+        android:gravity="center_horizontal"
+        android:drawable="@drawable/splash_txt" />
+
+</layer-list>

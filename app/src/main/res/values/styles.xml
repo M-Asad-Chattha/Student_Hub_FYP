@@ -20,9 +20,30 @@
     </style>
 
 
+    <style name="HeaderBar">
+        <item name="android:background">#303F9F</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SplashTheme" parent="ThemeFullSCreen">
+        <item name="android:windowBackground">@drawable/background_pre_splash</item>
+    </style>
+
+    <style name="ProfileTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:statusBarColor">@color/colorTransparent</item>
+    </style>
+
+    <style name="ForgetPasswordTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:statusBarColor">@color/colorTransparentOpacity</item>
+    </style>
 
 </resources>
