@@ -49,27 +49,6 @@
             android:textAlignment="center"
             android:textColor="@color/colorWhite" />
 
-        <!--<android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
-
-            <EditText
-                android:id="@+id/name1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
-                android:hint="Full Name"
-                android:imeActionId="6"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="10dp"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>-->
-
         <com.libizo.CustomEditText
             android:id="@+id/name"
             android:layout_width="match_parent"
@@ -78,7 +57,21 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/rounded_button_opacity"
-            android:hint="Full Name"
+            android:hint="Full name"
+            android:inputType="text"
+            android:padding="10dp"
+            app:libIZO_clearIconTint="#8f1f15"
+            app:libIZO_setClearIconVisible="true" />
+
+        <com.libizo.CustomEditText
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button_opacity"
+            android:hint="Username"
             android:inputType="text"
             android:padding="10dp"
             app:libIZO_clearIconTint="#8f1f15"

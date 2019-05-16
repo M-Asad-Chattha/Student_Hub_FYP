@@ -193,8 +193,8 @@ public class LoginActivity extends AppCompatActivity {
             focusView.requestFocus();
         } else {
             progress = new ProgressDialog(this);
-            progress.setTitle("Loading");
-            progress.setMessage("Wait while loading...");
+            progress.setTitle("Please Wait...");
+            progress.setMessage("Processing your request...");
             progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
             progress.show();
             firebaseAuth();
