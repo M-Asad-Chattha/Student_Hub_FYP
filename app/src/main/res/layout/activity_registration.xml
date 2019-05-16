@@ -49,27 +49,6 @@
             android:textAlignment="center"
             android:textColor="@color/colorWhite" />
 
-        <!--<android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp">
-
-            <EditText
-                android:id="@+id/name1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edittext"
-                android:hint="Full Name"
-                android:imeActionId="6"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="10dp"
-                android:singleLine="true" />
-        </android.support.design.widget.TextInputLayout>-->
-
         <com.libizo.CustomEditText
             android:id="@+id/name"
             android:layout_width="match_parent"
