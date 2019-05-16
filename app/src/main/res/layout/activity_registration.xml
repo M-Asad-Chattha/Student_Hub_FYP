@@ -78,7 +78,21 @@
             android:layout_marginTop="30dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/rounded_button_opacity"
-            android:hint="Full Name"
+            android:hint="Full name"
+            android:inputType="text"
+            android:padding="10dp"
+            app:libIZO_clearIconTint="#8f1f15"
+            app:libIZO_setClearIconVisible="true" />
+
+        <com.libizo.CustomEditText
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/rounded_button_opacity"
+            android:hint="Username"
             android:inputType="text"
             android:padding="10dp"
             app:libIZO_clearIconTint="#8f1f15"
