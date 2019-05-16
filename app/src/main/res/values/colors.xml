@@ -19,4 +19,5 @@
     <color name="colorTransparent">#7a3c3c3d</color>
     <color name="colorTransparentOpacity">#6D0021FF</color>
 
+    <color name="blue">#0000FF</color>
 </resources>
