@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -148,6 +150,10 @@ public class RegistrationActivity extends AppCompatActivity {
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
         String passwordAgain = mPasswordAgainView.getText().toString();
+        String spinnerProgramValue = spinnerProgram.getSelectedItem().toString();
+        String spinnerSemesterValue = spinnerSemester.getSelectedItem().toString();
+        String spinnerSectionValue = spinnerSection.getSelectedItem().toString();
+        String spinnerCampusValue = spinnerCampus.getSelectedItem().toString();
 
         // Check for a valid name.
         if (TextUtils.isEmpty(name)) {
@@ -179,6 +185,25 @@ public class RegistrationActivity extends AppCompatActivity {
             cancel = true;
         }
 
+        //Spinners validation
+        if (spinnerProgramValue.equals("Select Degree Program:")) {
+            ((TextView)spinnerProgram.getSelectedView()).setError("Select one from drop down");
+            cancel = true;
+        }
+        if (spinnerSemesterValue.equals("Select Semester:")){
+            ((TextView)spinnerSemester.getSelectedView()).setError("Select one from drop down");
+            cancel = true;
+        }
+        if (spinnerSectionValue.equals("Select Section:")){
+            ((TextView)spinnerSection.getSelectedView()).setError("Select one from drop down");
+            cancel = true;
+        }
+        if (spinnerCampusValue.equals("Select Campus:")){
+            ((TextView)spinnerCampus.getSelectedView()).setError("Select one from drop down");
+            cancel = true;
+        }
+
+        //Password match validation
         if (!password.matches(passwordAgain)) {
             mPasswordAgainView.setError("Password does not match.");
             focusView = mPasswordAgainView;
@@ -198,6 +223,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         if (cancel) {
             focusView.requestFocus();
+            Toast.makeText(this, "Incorrect Input.", Toast.LENGTH_SHORT).show();
         } else {
             progress = new ProgressDialog(this);
             progress.setTitle("Please Wait...");
@@ -246,6 +272,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
     private void resetFields(){
         mName.setText(null);
+        mUserName.setText(null);
         mEmailView.setText(null);
         mPasswordView.setText(null);
         mPasswordAgainView.setText(null);
@@ -273,6 +300,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
+                                                resetFields();
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(RegistrationActivity.this);
                                                 builder.setMessage("Register successfully, Please check you email for verification.")
                                                         .setCancelable(false)
@@ -324,11 +352,19 @@ public class RegistrationActivity extends AppCompatActivity {
         DatabaseReference userDB= FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         Map dataMap=new HashMap();
         dataMap.put("name", name);
+        dataMap.put("bio", "Add bio from Edit Info");
+        dataMap.put("email", email);
         dataMap.put("userName", userName);
         dataMap.put("program", spinnerProgramValue);
         dataMap.put("semester", spinnerSemesterValue);
         dataMap.put("section", spinnerSectionValue);
         dataMap.put("campus", spinnerCampusValue);
         userDB.setValue(dataMap);
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(name)
+                .build();
+        firebaseUser.updateProfile(profileUpdates);
     }
+
 }

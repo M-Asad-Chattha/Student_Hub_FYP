@@ -225,7 +225,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/A:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_info_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/A:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_more_horiz_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -235,10 +235,13 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="color" value="a09e9e" />
+                            <entry key="height" value="50" />
                             <entry key="opacityPercent" value="97" />
-                            <entry key="outputName" value="ic_menu_about" />
+                            <entry key="outputName" value="ic_more" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\Asad Chattha\Desktop\method-draw-image.svg" />
+                            <entry key="width" value="50" />
                           </map>
                         </option>
                       </PersistentState>

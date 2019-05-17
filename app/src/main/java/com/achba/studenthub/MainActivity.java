@@ -3,7 +3,6 @@ package com.achba.studenthub;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
@@ -15,7 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     ProgressDialog progress;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +50,8 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
         progress = new ProgressDialog(this);
+
+        userinfoDrawerLayout();
     }
 
     @Override
@@ -163,5 +163,22 @@ public class MainActivity extends AppCompatActivity
 
     private void stopLoading(){
         progress.dismiss();
+    }
+
+    public void userinfoDrawerLayout(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        TextView nameDrawerHeader = (TextView) headerView.findViewById(R.id.name_drawerHeader);
+        TextView emailDrawerHeader = (TextView) headerView.findViewById(R.id.email_drawerHeader);
+
+        if (user != null) {
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            nameDrawerHeader.setText(name);
+            emailDrawerHeader.setText(email);
+        }
+
+
     }
 }

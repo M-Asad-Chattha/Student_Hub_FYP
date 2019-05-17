@@ -165,14 +165,14 @@
     <string name="title_activity_reminder">ReminderActivity</string>
 
     <string-array name="spinnerProgram">
-        <item>Select Degree Program</item>
-        <item>SE</item>
-        <item>IT</item>
-        <item>CS</item>
+        <item>Select Degree Program:</item>
+        <item>Software Engineering</item>
+        <item>Information Tecnology</item>
+        <item>Computer Science</item>
     </string-array>
 
     <string-array name="spinnerSemester">
-        <item>Select Semester</item>
+        <item>Select Semester:</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -184,13 +184,13 @@
     </string-array>
 
     <string-array name="spinnerSection">
-        <item>Select Section</item>
+        <item>Select Section:</item>
         <item>A</item>
         <item>B</item>
     </string-array>
 
     <string-array name="spinnerCampus">
-        <item>Select campus</item>
+        <item>Select Campus:</item>
         <item>Hafiz Hayat</item>
         <item>Marghzar</item>
     </string-array>
