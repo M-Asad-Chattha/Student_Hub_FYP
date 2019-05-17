@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         firebaseAuth = FirebaseAuth.getInstance();
         progress = new ProgressDialog(this);
 
-        userinfoDrawerLayout();
+        //userinfoDrawerLayout();
     }
 
     @Override
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity
         progress.dismiss();
     }
 
-    public void userinfoDrawerLayout(){
+    /*public void userinfoDrawerLayout(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
@@ -180,5 +180,5 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-    }
+    }*/
 }

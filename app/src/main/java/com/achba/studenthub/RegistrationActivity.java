@@ -360,11 +360,11 @@ public class RegistrationActivity extends AppCompatActivity {
         dataMap.put("section", spinnerSectionValue);
         dataMap.put("campus", spinnerCampusValue);
         userDB.setValue(dataMap);
-
+/*
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(name)
                 .build();
-        firebaseUser.updateProfile(profileUpdates);
+        firebaseUser.updateProfile(profileUpdates);*/
     }
 
 }
