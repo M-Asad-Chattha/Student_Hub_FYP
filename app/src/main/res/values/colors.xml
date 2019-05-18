@@ -20,4 +20,10 @@
     <color name="colorTransparentOpacity">#6D0021FF</color>
 
     <color name="blue">#0000FF</color>
+
+    <!-- Edit Profile-->
+    <color name="colorPrimary_EditProfile">#FFFFFF</color>
+    <color name="colorPrimaryDark_EditProfile">#E6E6E6</color>
+    <color name="colorAccent_EditProfile">#D81B60</color>
+
 </resources>

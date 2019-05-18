@@ -75,7 +75,8 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void onClickEditProfile(View view) {
-        Toast.makeText(this, "Edit Profile", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this, EditProfileActivity.class);
+        startActivity(intent);
     }
 
     public void onClickDeleteAccount(View view) {
