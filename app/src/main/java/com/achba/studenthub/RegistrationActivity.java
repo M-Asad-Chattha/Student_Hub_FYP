@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -51,6 +52,8 @@ public class RegistrationActivity extends AppCompatActivity {
     Spinner spinnerProgram, spinnerSemester, spinnerSection, spinnerCampus;
     LinearLayout layout;
 
+    private FirebaseUser firebaseUser ;
+    private String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +110,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
         resetFields();
         firebaseAuth = FirebaseAuth.getInstance();
+        /*firebaseUser = firebaseAuth.getCurrentUser();
+        userID=firebaseUser.getUid();*/
     }
 
     @Override
@@ -281,20 +286,24 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void createFirebaseUser(){
-        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        firebaseUser = firebaseAuth.getCurrentUser();
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
+        /*firebaseUser = firebaseAuth.getCurrentUser();
+        userID=firebaseUser.getUid();*/
+        Log.i("ID", "createUser()"+userID); //null return
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
                         progress.dismiss();
 
                         if (task.isSuccessful()) {
                             //User info saved in Database
 //                            saveUserInfo();
-
                             firebaseUser.sendEmailVerification()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -312,6 +321,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                                         });
                                                 AlertDialog alert = builder.create();
                                                 alert.show();
+                                                userID=firebaseUser.getUid();
                                             }else{
                                                 Toast.makeText(RegistrationActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                             }
@@ -338,8 +348,9 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void saveUserInfo(){
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        final FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        String userID=firebaseUser.getUid();
+        Log.i("ID", "saveInfo():   "+userID);
+
         final String email = mEmailView.getText().toString();
         final String name = mName.getText().toString();
         final String userName = mUserName.getText().toString();
@@ -348,8 +359,8 @@ public class RegistrationActivity extends AppCompatActivity {
         final String spinnerSectionValue = spinnerSection.getSelectedItem().toString();
         final String spinnerCampusValue = spinnerCampus.getSelectedItem().toString();
 
-        String userID = firebaseUser.getUid();
-        DatabaseReference userDB= FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+        DatabaseReference userDB= FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
+
         Map dataMap=new HashMap();
         dataMap.put("name", name);
         dataMap.put("bio", "Add bio from Edit Info");
@@ -360,8 +371,8 @@ public class RegistrationActivity extends AppCompatActivity {
         dataMap.put("section", spinnerSectionValue);
         dataMap.put("campus", spinnerCampusValue);
         userDB.setValue(dataMap);
-/*
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+
+       /* UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(name)
                 .build();
         firebaseUser.updateProfile(profileUpdates);*/

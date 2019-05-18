@@ -19,10 +19,18 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView name, bio, program, semester, section, campus;
     ImageView profileImg, coverImg;
+    DatabaseReference databaseReference;
+    FirebaseAuth firebaseAuth;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,27 @@ public class ProfileActivity extends AppCompatActivity {
         name=findViewById(R.id.name);
         profileImg = findViewById(R.id.profileImg);
 
+        firebaseAuth=FirebaseAuth.getInstance();
+        userID=firebaseAuth.getCurrentUser().getUid();
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+        Log.i("ID", userID);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()) {
+                    String name = dataSnapshot.child("name").getValue(String.class);
+                    Toast.makeText(ProfileActivity.this, name, Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(ProfileActivity.this, "Data retrieve Problem", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+        //retrieveData();
     }
 
     @Override
@@ -85,5 +114,26 @@ public class ProfileActivity extends AppCompatActivity {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public void retrieveData(){
+        firebaseAuth=FirebaseAuth.getInstance();
+        userID=firebaseAuth.getCurrentUser().getUid();
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()) {
+                    String name = dataSnapshot.child("name").getValue(String.class);
+                    Toast.makeText(ProfileActivity.this, name, Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(ProfileActivity.this, "Data retrieve Problem", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 }
