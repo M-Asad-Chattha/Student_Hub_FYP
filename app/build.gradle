@@ -37,5 +37,5 @@ dependencies {
     implementation 'com.github.Shashank02051997:FancyAboutPage-Android:2.6'
     implementation 'com.mikhaellopez:circularimageview:3.2.0'
     implementation 'com.libizo:customedittext:1.0.5'
-
+    implementation 'com.thefinestartist:finestwebview:1.2.7'
 }

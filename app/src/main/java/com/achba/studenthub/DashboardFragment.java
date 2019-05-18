@@ -83,12 +83,13 @@ public class DashboardFragment extends Fragment  {
         cardBooks.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(getContext(), BookActivity.class);
-                startActivity(intent);*/
-                String url = "http://digitallibrary.edu.pk";
+                Intent intent = new Intent(getContext(), BookActivity.class);
+                startActivity(intent);
+
+                /*String url = "http://digitallibrary.edu.pk";
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
-                startActivity(i);
+                startActivity(i);*/
             }
         });
 
