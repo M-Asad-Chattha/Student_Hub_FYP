@@ -1,10 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/schedule"
+    android:background="@android:color/white"
     tools:context=".TimetableActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <RadioGroup
+        android:id="@+id/radioGroup_days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/rounded_radio"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@drawable/btn_selector_left"
+            android:button="@null"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="Monday" />
+
+        <RadioButton
+            android:id="@+id/tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@drawable/btn_selector_others"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Tuesday" />
+
+        <RadioButton
+            android:id="@+id/wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@drawable/btn_selector_others"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Wednesday" />
+
+        <RadioButton
+            android:id="@+id/thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@drawable/btn_selector_others"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Thursday" />
+
+        <RadioButton
+            android:id="@+id/friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@drawable/btn_selector_right"
+            android:button="@null"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Friday" />
+    </RadioGroup>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/radioGroup_days"
+        android:layout_marginTop="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/card_1"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="20dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="6dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp">
+
+                    <TextView
+                        android:id="@+id/subjectName1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="Data Structure and Algorithms"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/roomNumber1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+
+                        android:text="DB 05"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/classTime1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:gravity="right"
+                        android:text="10:00AM - 11:00AM" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="5dp"
+                        android:layout_below="@id/classTime1"
+                        android:layout_alignLeft="@id/classTime1"
+                        android:layout_alignRight="@id/classTime1"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_button" />
+
+                    <TextView
+                        android:id="@+id/teacherName1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:text="Mr. Ijaz Ahmed"
+                        android:textSize="17dp" />
+
+                </RelativeLayout>
+
+            </android.support.design.card.MaterialCardView>
+
+            <!--Send Slot card-->
+
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/card_2"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@id/card_1"
+                android:layout_margin="20dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="6dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp">
+
+                    <TextView
+                        android:id="@+id/subjectName2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="Data Structure and Algorithms"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/roomNumber2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+
+                        android:text="DB 05"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/classTime2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:gravity="right"
+                        android:text="10:00AM - 11:00AM" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="5dp"
+                        android:layout_below="@id/classTime2"
+                        android:layout_alignLeft="@id/classTime2"
+                        android:layout_alignRight="@id/classTime2"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_button" />
+
+                    <TextView
+                        android:id="@+id/teacherName2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:text="Mr. Ijaz Ahmed"
+                        android:textSize="17dp" />
+
+                </RelativeLayout>
+
+            </android.support.design.card.MaterialCardView>
+
+            <!-- 3rd Slot-->
+
+            <android.support.design.card.MaterialCardView
+                android:id="@+id/card_3"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_below="@id/card_2"
+                android:layout_margin="20dp"
+                android:elevation="10dp"
+                app:cardCornerRadius="6dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp">
+
+                    <TextView
+                        android:id="@+id/subjectName3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="Data Structure and Algorithms"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:id="@+id/roomNumber3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+
+                        android:text="DB 05"
+                        android:textSize="17dp" />
+
+                    <TextView
+                        android:id="@+id/classTime3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="40dp"
+                        android:gravity="right"
+                        android:text="10:00AM - 11:00AM" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="5dp"
+                        android:layout_below="@id/classTime3"
+                        android:layout_alignLeft="@id/classTime3"
+                        android:layout_alignRight="@id/classTime3"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/rounded_button" />
+
+                    <TextView
+                        android:id="@+id/teacherName3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:text="Mr. Ijaz Ahmed"
+                        android:textSize="17dp" />
+
+                </RelativeLayout>
+
+            </android.support.design.card.MaterialCardView>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

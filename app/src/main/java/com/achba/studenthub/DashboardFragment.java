@@ -74,14 +74,7 @@ public class DashboardFragment extends Fragment  {
         cardTimeTable.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(getContext(), TimetableActivity.class);
-                startActivity(intent);*/
-
-                Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
-                builder.appendPath("time");
-                ContentUris.appendId(builder, Calendar.getInstance().getTimeInMillis());
-                Intent intent = new Intent(Intent.ACTION_VIEW)
-                        .setData(builder.build());
+                Intent intent = new Intent(getContext(), TimetableActivity.class);
                 startActivity(intent);
             }
         });
