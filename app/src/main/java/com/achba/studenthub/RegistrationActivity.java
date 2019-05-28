@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +44,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
-//    private AutoCompleteTextView mEmailView;
+    //    private AutoCompleteTextView mEmailView;
     private EditText mName, mUserName, mPasswordView, mPasswordAgainView, mEmailView;
     View focusView = null;
     private FirebaseAuth firebaseAuth;
@@ -52,8 +53,9 @@ public class RegistrationActivity extends AppCompatActivity {
     Spinner spinnerProgram, spinnerSemester, spinnerSection, spinnerCampus;
     LinearLayout layout;
 
-    private FirebaseUser firebaseUser ;
-    private String userID;
+    private FirebaseUser firebaseUser;
+    String userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,10 +69,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_registration);
 
-        mName=findViewById(R.id.name);
+        mName = findViewById(R.id.name);
         mUserName = findViewById(R.id.userName);
-        mEmailView=findViewById(R.id.email_registration);
-        mPasswordView=findViewById(R.id.password_registration);
+        mEmailView = findViewById(R.id.email_registration);
+        mPasswordView = findViewById(R.id.password_registration);
         mPasswordAgainView = findViewById(R.id.password_registration_agin);
         spinnerProgram = findViewById(R.id.spinnerProgram);
         spinnerSemester = findViewById(R.id.spinnerSemester);
@@ -78,11 +80,9 @@ public class RegistrationActivity extends AppCompatActivity {
         spinnerCampus = findViewById(R.id.spinnerCampus);
         layout = findViewById(R.id.layout);
 
-        layout.setOnTouchListener(new View.OnTouchListener()
-        {
+        layout.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent ev)
-            {
+            public boolean onTouch(View view, MotionEvent ev) {
                 hideKeyboard(view);
                 return false;
             }
@@ -130,7 +130,8 @@ public class RegistrationActivity extends AppCompatActivity {
         Toast.makeText(this, "Registration failed.", Toast.LENGTH_SHORT).show();
 
     }
-    public void hideKeyboard(){
+
+    public void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -143,12 +144,12 @@ public class RegistrationActivity extends AppCompatActivity {
         attemptLogin();
     }
 
-    public void hideKeyboard(View view){
+    public void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    private void attemptLogin(){
+    private void attemptLogin() {
         boolean cancel = false;
         String name = mName.getText().toString();
         String userName = mUserName.getText().toString();
@@ -178,7 +179,7 @@ public class RegistrationActivity extends AppCompatActivity {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
-        }else if (TextUtils.isEmpty(password)) {
+        } else if (TextUtils.isEmpty(password)) {
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
             cancel = true;
@@ -192,19 +193,19 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //Spinners validation
         if (spinnerProgramValue.equals("Select Degree Program:")) {
-            ((TextView)spinnerProgram.getSelectedView()).setError("Select one from drop down");
+            ((TextView) spinnerProgram.getSelectedView()).setError("Select one from drop down");
             cancel = true;
         }
-        if (spinnerSemesterValue.equals("Select Semester:")){
-            ((TextView)spinnerSemester.getSelectedView()).setError("Select one from drop down");
+        if (spinnerSemesterValue.equals("Select Semester:")) {
+            ((TextView) spinnerSemester.getSelectedView()).setError("Select one from drop down");
             cancel = true;
         }
-        if (spinnerSectionValue.equals("Select Section:")){
-            ((TextView)spinnerSection.getSelectedView()).setError("Select one from drop down");
+        if (spinnerSectionValue.equals("Select Section:")) {
+            ((TextView) spinnerSection.getSelectedView()).setError("Select one from drop down");
             cancel = true;
         }
-        if (spinnerCampusValue.equals("Select Campus:")){
-            ((TextView)spinnerCampus.getSelectedView()).setError("Select one from drop down");
+        if (spinnerCampusValue.equals("Select Campus:")) {
+            ((TextView) spinnerCampus.getSelectedView()).setError("Select one from drop down");
             cancel = true;
         }
 
@@ -239,7 +240,7 @@ public class RegistrationActivity extends AppCompatActivity {
         }
     }
 
-    private void firebaseAuth(){
+    private void firebaseAuth() {
         final String userName = mUserName.getText().toString();
 
         //User Info save in firebase Database
@@ -254,9 +255,10 @@ public class RegistrationActivity extends AppCompatActivity {
                     Toast.makeText(RegistrationActivity.this, "User already exist.", Toast.LENGTH_SHORT).show();
                 } else {
                     createFirebaseUser();
-                    saveUserInfo();
+//                    saveUserInfo();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -275,23 +277,20 @@ public class RegistrationActivity extends AppCompatActivity {
         return email.contains("@");
     }
 
-    private void resetFields(){
+    private void resetFields() {
         mName.setText(null);
         mUserName.setText(null);
         mEmailView.setText(null);
         mPasswordView.setText(null);
         mPasswordAgainView.setText(null);
-        focusView=mName;
+        focusView = mName;
         focusView.requestFocus();
     }
 
-    public void createFirebaseUser(){
+    public void createFirebaseUser() {
         firebaseUser = firebaseAuth.getCurrentUser();
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-        /*firebaseUser = firebaseAuth.getCurrentUser();
-        userID=firebaseUser.getUid();*/
-        Log.i("ID", "createUser()"+userID); //null return
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -302,8 +301,11 @@ public class RegistrationActivity extends AppCompatActivity {
                         progress.dismiss();
 
                         if (task.isSuccessful()) {
-                            //User info saved in Database
-//                            saveUserInfo();
+
+                            userID = firebaseUser.getUid();
+                            Log.i("IDF", "createUser:" + userID);
+                            saveUserInfo();
+
                             firebaseUser.sendEmailVerification()
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -321,8 +323,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                                         });
                                                 AlertDialog alert = builder.create();
                                                 alert.show();
-                                                userID=firebaseUser.getUid();
-                                            }else{
+                                            } else {
                                                 Toast.makeText(RegistrationActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         }
@@ -335,11 +336,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        if(e instanceof FirebaseAuthUserCollisionException){
+                        if (e instanceof FirebaseAuthUserCollisionException) {
                             Toast.makeText(getApplicationContext(), "User Already exist", Toast.LENGTH_SHORT).show();
 //                                updateStatus("User Already exist");
-                        }
-                        else{
+                        } else {
                             Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 //                                updateStatus(e.getLocalizedMessage());
                         }
@@ -347,21 +347,22 @@ public class RegistrationActivity extends AppCompatActivity {
                 });
     }
 
-    public void saveUserInfo(){
-        String userID=firebaseUser.getUid();
-        Log.i("ID", "saveInfo():   "+userID);
+    public void saveUserInfo() {
+
+        Log.i("IDF", "saveInfo:" + userID);
 
         final String email = mEmailView.getText().toString();
         final String name = mName.getText().toString();
         final String userName = mUserName.getText().toString();
+        final String profileImg = "http://diazworld.com/images/avatar-placeholder.png";
         final String spinnerProgramValue = spinnerProgram.getSelectedItem().toString();
         final String spinnerSemesterValue = spinnerSemester.getSelectedItem().toString();
         final String spinnerSectionValue = spinnerSection.getSelectedItem().toString();
         final String spinnerCampusValue = spinnerCampus.getSelectedItem().toString();
 
-        DatabaseReference userDB= FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
-
-        Map dataMap=new HashMap();
+        /*if(firebaseUser!=null) {*/
+        DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
+        Map dataMap = new HashMap();
         dataMap.put("name", name);
         dataMap.put("bio", "Add bio from Edit Info");
         dataMap.put("email", email);
@@ -370,7 +371,11 @@ public class RegistrationActivity extends AppCompatActivity {
         dataMap.put("semester", spinnerSemesterValue);
         dataMap.put("section", spinnerSectionValue);
         dataMap.put("campus", spinnerCampusValue);
+        dataMap.put("profileImageUrl", profileImg);
         userDB.setValue(dataMap);
+        /*}else{
+            Toast.makeText(this, "Data saved failed: User not found.", Toast.LENGTH_SHORT).show();
+        }*/
 
        /* UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(name)

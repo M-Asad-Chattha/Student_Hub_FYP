@@ -25,6 +25,7 @@
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/profileImg_edit"
             android:layout_width="150dp"
+            android:onClick="onClickProfileImg"
             android:layout_height="150dp"
             android:src="@drawable/profileimg_placeholder" />
 

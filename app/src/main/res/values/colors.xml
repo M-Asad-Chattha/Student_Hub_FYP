@@ -14,6 +14,7 @@
     <color name="colorSplash_large">#F97C3C</color>
 
     <color name="colorBrand">#2ac8cc</color>
+    <color name="colorBrandOpacity">#B42AC8CC</color>
 
     <color name="my_text_color">#ffffff</color>
     <color name="colorTransparent">#7a3c3c3d</color>
