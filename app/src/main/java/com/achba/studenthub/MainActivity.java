@@ -2,6 +2,7 @@ package com.achba.studenthub;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -15,17 +16,27 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     ProgressDialog progress;
+    DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +63,7 @@ public class MainActivity extends AppCompatActivity
         firebaseAuth = FirebaseAuth.getInstance();
         progress = new ProgressDialog(this);
 
-        Log.i("ID", "dashboard"+FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
-
-        //userinfoDrawerLayout();
+        userinfoDrawerLayout();
     }
 
     @Override
@@ -168,20 +177,38 @@ public class MainActivity extends AppCompatActivity
         progress.dismiss();
     }
 
-    /*public void userinfoDrawerLayout(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    public void userinfoDrawerLayout(){
+        NavigationView navigationView = findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
-        TextView nameDrawerHeader = (TextView) headerView.findViewById(R.id.name_drawerHeader);
-        TextView emailDrawerHeader = (TextView) headerView.findViewById(R.id.email_drawerHeader);
+        final ImageView imageView=headerView.findViewById(R.id.imageView);
+        final TextView nameDrawerHeader = headerView.findViewById(R.id.name_drawerHeader);
+        //        TextView emailDrawerHeader = (TextView) headerView.findViewById(R.id.email_drawerHeader);
 
-        if (user != null) {
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            nameDrawerHeader.setText(name);
-            emailDrawerHeader.setText(email);
-        }
+        String userID=firebaseAuth.getCurrentUser().getUid();
+        databaseReference= FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()) {
+                    String name=dataSnapshot.child("userName").getValue(String.class);
+                    String profileImageUrl=dataSnapshot.child("profileImageUrl").getValue(String.class);
+                    Uri imageUrl = Uri.parse(profileImageUrl);
 
-
-    }*/
+                    RequestOptions requestOptions = new RequestOptions();
+                    requestOptions.placeholder(R.drawable.profileimg_placeholder);
+                    requestOptions.error(R.drawable.profileimg_placeholder);
+                    Glide.with(MainActivity.this)
+                            .setDefaultRequestOptions(requestOptions)
+                            .load(imageUrl)
+                            .into(imageView);
+                    nameDrawerHeader.setText(name);
+                }/*else{
+                    Toast.makeText(MainActivity.this, "Data retrieve Problem", Toast.LENGTH_SHORT).show();
+                }*/  // No need to show user about data error in dashboard
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 }
