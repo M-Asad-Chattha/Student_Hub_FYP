@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -13,6 +15,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +41,8 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String userID;
     ProgressDialog progress;
+    ProgressBar progressBar;
+    RelativeLayout layoutContainer;
     SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -57,6 +63,8 @@ public class ProfileActivity extends AppCompatActivity {
         mSection=findViewById(R.id.tv_secondSection);
         mCampus = findViewById(R.id.tv_secondCampus);
         swipeRefreshLayout=findViewById(R.id.swipeRefresh);
+        progressBar=findViewById(R.id.progressBar);
+        layoutContainer=findViewById(R.id.layoutContainer);
 
         swipeRefreshLayout.setColorScheme(R.color.blue,
                 R.color.colorBrand, R.color.colorSplash_large, R.color.colorDarkGray);
@@ -73,11 +81,11 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        progress = new ProgressDialog(this);
+        /*progress = new ProgressDialog(this);
         progress.setTitle("Please Wait...");
         progress.setMessage("Fetching User Data...");
         progress.setCancelable(false);
-        progress.show();
+        progress.show();*/
 
         firebaseAuth=FirebaseAuth.getInstance();
         userID=firebaseAuth.getCurrentUser().getUid();
@@ -182,7 +190,9 @@ public class ProfileActivity extends AppCompatActivity {
                             .load(imageUrl)
                             .into(profileImg);
 
-                    progress.dismiss();
+                    /*progress.dismiss();*/
+                    progressBar.setVisibility(View.GONE);
+                    layoutContainer.setVisibility(View.VISIBLE);
                 }else{
                     Toast.makeText(ProfileActivity.this, "Data retrieve Problem", Toast.LENGTH_SHORT).show();
                 }

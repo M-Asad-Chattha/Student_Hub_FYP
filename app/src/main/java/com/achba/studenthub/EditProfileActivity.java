@@ -212,8 +212,6 @@ public class EditProfileActivity extends AppCompatActivity {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("name", name);
         hashMap.put("bio", bio);
-//        hashMap.put("email", email);
-//        hashMap.put("userName", userName);
         hashMap.put("program", spinnerProgramValue);
         hashMap.put("semester", spinnerSemesterValue);
         hashMap.put("section", spinnerSectionValue);
@@ -221,6 +219,9 @@ public class EditProfileActivity extends AppCompatActivity {
         userDB.updateChildren(hashMap);
 
         progress.dismiss();
+        Toast.makeText(this, "Profile Update Successfully.", Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(this, ProfileActivity.class);
+        startActivity(intent);
     }
 
     private String getFileExtension(Uri uri){
