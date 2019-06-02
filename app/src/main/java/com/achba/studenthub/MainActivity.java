@@ -1,10 +1,16 @@
 package com.achba.studenthub;
 
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,12 +36,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     ProgressDialog progress;
     DatabaseReference databaseReference;
+    AudioManager audioManager;
 
 
     @Override
@@ -62,8 +72,10 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
         progress = new ProgressDialog(this);
+        audioManager= (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
 
         userinfoDrawerLayout();
+        vibrationMood();
     }
 
     @Override
@@ -190,7 +202,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()) {
-                    String name=dataSnapshot.child("userName").getValue(String.class);
+                    String userName=dataSnapshot.child("userName").getValue(String.class);
                     String profileImageUrl=dataSnapshot.child("profileImageUrl").getValue(String.class);
                     Uri imageUrl = Uri.parse(profileImageUrl);
 
@@ -201,7 +213,7 @@ public class MainActivity extends AppCompatActivity
                             .setDefaultRequestOptions(requestOptions)
                             .load(imageUrl)
                             .into(imageView);
-                    nameDrawerHeader.setText(name);
+                    nameDrawerHeader.setText(userName);
                 }/*else{
                     Toast.makeText(MainActivity.this, "Data retrieve Problem", Toast.LENGTH_SHORT).show();
                 }*/  // No need to show user about data error in dashboard
@@ -210,5 +222,52 @@ public class MainActivity extends AppCompatActivity
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+    }
+
+    private void vibrationMood() {
+        Date startTime, endTime, currentTime;
+
+        Calendar calStartTime = Calendar.getInstance();
+        calStartTime.set(Calendar.HOUR_OF_DAY, 15);
+        calStartTime.set(Calendar.MINUTE, 0);
+        calStartTime.set(Calendar.SECOND, 0);
+        calStartTime.set(Calendar.MILLISECOND, 0);
+
+        Calendar calEndTime = Calendar.getInstance();
+        calEndTime.set(Calendar.HOUR_OF_DAY, 20);
+        calEndTime.set(Calendar.MINUTE, 0);
+        calEndTime.set(Calendar.SECOND, 0);
+        calEndTime.set(Calendar.MILLISECOND, 0);
+
+        startTime = calStartTime.getTime();
+        endTime = calEndTime.getTime();
+        currentTime= Calendar.getInstance().getTime();
+
+        if( (currentTime.after(startTime) && currentTime.before(endTime)) &&
+                (audioManager.getRingerMode() == AudioManager.RINGER_MODE_NORMAL) ){
+            notification("Vibration Mode activated",
+                    "Your device is going to vibrate mood until University time end.");
+            //For Vibrate mode
+            audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+
+        }else if(!(currentTime.after(startTime) && currentTime.before(endTime)) &&
+                (audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT
+                        || audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE)){
+
+            notification("Vibration Mode inactivate ",
+                    "University time ends, your device is now in normal mode.");
+            audioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+        }
+    }
+
+    public void notification(String title, String content) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(MainActivity.this);
+        builder.setSmallIcon(R.drawable.ic_cap);
+        builder.setBadgeIconType(R.drawable.ic_book);
+        builder.setContentTitle(title);
+        builder.setContentText(content);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, builder.build());
     }
 }

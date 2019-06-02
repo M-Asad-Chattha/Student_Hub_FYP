@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.achba.studenthub">
+
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -10,9 +12,9 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -28,27 +30,34 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <service
+            android:name=".TimeTableIntentService"
+            android:exported="false"></service>
+
+        <receiver
+            android:name=".TimeTableReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/FinestWebViewTheme.Light.Fullscreen" />
-
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
-
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity
             android:name=".EditProfileActivity"
             android:label="Edit Profile"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
             android:name=".ForgetPasswordActivity"
             android:label="Forget Password"
             android:theme="@style/ProfileTheme" />
         <activity
-            android:label="Profile"
             android:name=".ProfileActivity"
+            android:label="Profile"
             android:theme="@style/ProfileTheme" />
         <activity
             android:name=".AboutActivity"
@@ -74,8 +83,7 @@
         </activity>
         <activity
             android:name=".ReminderActivity"
-            android:label="@string/title_activity_reminder"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_reminder" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
@@ -111,8 +119,8 @@
             android:label="@string/title_activity_timetable" />
         <activity
             android:name=".BookActivity"
-            android:theme="@style/ProfileTheme"
-            android:label="@string/title_activity_book" />
+            android:label="@string/title_activity_book"
+            android:theme="@style/ProfileTheme" />
         <activity
             android:name=".GPAActivity"
             android:label="@string/title_activity_GPA" />

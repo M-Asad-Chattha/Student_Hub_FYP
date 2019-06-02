@@ -10,8 +10,9 @@
     <RadioGroup
         android:id="@+id/radioGroup_days"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_margin="8dp"
+        android:layout_weight="1"
         android:background="@drawable/rounded_radio"
         android:gravity="center"
         android:orientation="horizontal">
@@ -110,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-
+                        android:layout_marginTop="40dp"
                         android:text="DB 05"
                         android:textSize="17dp" />
 
@@ -175,7 +176,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-
+                        android:layout_marginTop="40dp"
                         android:text="DB 05"
                         android:textSize="17dp" />
 
@@ -240,7 +241,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-
+                        android:layout_marginTop="40dp"
                         android:text="DB 05"
                         android:textSize="17dp" />
 
