@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class User {
+public class UserSD {
     private String userName;
     private String name;
     private String email;
@@ -26,7 +26,7 @@ public class User {
     private String userID;
 
 
-    public User() {
+    public UserSD() {
 
     }
 

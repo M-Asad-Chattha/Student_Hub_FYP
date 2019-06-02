@@ -1,7 +1,6 @@
 package com.achba.studenthub;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,7 +12,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,20 +23,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-
-import static java.util.Calendar.HOUR_OF_DAY;
-import static java.util.Calendar.MINUTE;
-import static java.util.Calendar.PM;
 
 public class TimetableActivity extends AppCompatActivity {
     RadioGroup radioGroup;
     DatabaseReference databaseReferenceUsers, databaseReferenceTimeTable1, databaseReferenceTimeTable2,
             databaseReferenceTimeTable3;
     FirebaseAuth firebaseAuth;
-    User user;
+    UserSD userSD;
 
     TextView subjectName1, subjectName2, subjectName3, classTime1, classTime2, classTime3, roomNumber1, roomNumber2, roomNumber3,
             teacherName1, teacherName2, teacherName3;
@@ -573,11 +566,11 @@ public class TimetableActivity extends AppCompatActivity {
                 String section = dataSnapshot.child("section").getValue(String.class);
                 String campus = dataSnapshot.child("campus").getValue(String.class);
 
-                *//*user.setName(name);
-                user.setProgram(program);
-                user.setSemester(semester);
-                user.setSection(section);
-                user.setCampus(campus);*//*
+                *//*userSD.setName(name);
+                userSD.setProgram(program);
+                userSD.setSemester(semester);
+                userSD.setSection(section);
+                userSD.setCampus(campus);*//*
 
                 mProgram=program;
                 mSemester=semester;

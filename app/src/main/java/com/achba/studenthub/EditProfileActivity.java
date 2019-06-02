@@ -97,7 +97,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
         final ProgressDialog progress = new ProgressDialog(this);
         progress.setTitle("Please Wait...");
-        progress.setMessage("Fetching User Data...");
+        progress.setMessage("Fetching UserSD Data...");
         progress.setCancelable(false);
         progress.show();
 

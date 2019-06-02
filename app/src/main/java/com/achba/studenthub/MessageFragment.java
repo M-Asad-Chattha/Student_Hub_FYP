@@ -1,43 +1,37 @@
 package com.achba.studenthub;
 
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.lang.reflect.Array;
+import com.achba.studenthub.Adapter.UserAdapter;
+import com.achba.studenthub.Decoration.SimpleDividerItemDecoration;
+import com.achba.studenthub.Model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
-// Todo Branch 1st Commit
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class MessageFragment extends Fragment {
     private View view;
-    ListView listView;
-    TextView textView;
-    private static final int PERMISSIONS_REQUEST_READ_CONTACTS=100;
-    Cursor c;
-    ArrayList<String> contacts;
+    private RecyclerView recyclerView;
+    private UserAdapter userAdapter;
+    private List<User> mUsers;
 
     public MessageFragment() {
-        // Required empty public constructor
     }
 
 
@@ -45,46 +39,50 @@ public class MessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_message, container, false);
-        /*listView = view.findViewById(R.id.listView);
+        recyclerView = view.findViewById(R.id.recyclerView_users);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
 
-        int permissionCheck = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_CONTACTS);
-        if(permissionCheck == PackageManager.PERMISSION_GRANTED){
-            showContacts();
-        }else{
-            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_CONTACTS},
-                    PERMISSIONS_REQUEST_READ_CONTACTS);
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, contacts);
-        listView.setAdapter(adapter);*/
+        /*DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                new LinearLayoutManager(getContext()).getOrientation());
+        recyclerView.addItemDecoration(dividerItemDecoration);*/
+
+        mUsers = new ArrayList<>();
+        readUsers();
 
         return view;
     }
-/*
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == PERMISSIONS_REQUEST_READ_CONTACTS){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                showContacts();
-            }else {
-                Toast.makeText(getActivity(), "Grant permission for show contacts", Toast.LENGTH_SHORT).show();
+    private void readUsers() {
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                /*if (search_users.getText().toString().equals("")) {*/
+                    mUsers.clear();
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        User user=snapshot.getValue(User.class);
+
+                        assert user !=null;
+                        assert firebaseUser !=null;
+                        if (!user.getId().equals(firebaseUser.getUid())) {
+                            mUsers.add(user);
+                        }
+
+                    }
+
+                    userAdapter = new UserAdapter(getContext(), mUsers /*,false*/);
+                    recyclerView.setAdapter(userAdapter);
+//              }
             }
-        }
-    }
 
-    private void showContacts(){
-        c =  getActivity().getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-                null, null, null, ContactsContract.Contacts.DISPLAY_NAME + "ASC");
-        contacts = new ArrayList<String>();
-        while (c.moveToNext()){
-            String contactName = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-            String phoneNumber = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            contacts.add("Name:  " + contactName + "\n" + "PhoneNo:  " + phoneNumber);
-        }
-        c.close();
-    }
-*/
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
 }

@@ -243,7 +243,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private void firebaseAuth() {
         final String userName = mUserName.getText().toString();
 
-        //User Info save in firebase Database
+        //UserSD Info save in firebase Database
         Query userNameQuery = FirebaseDatabase.getInstance().getReference().child("Users")
                 .orderByChild("userName").equalTo(userName);
         userNameQuery.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -252,7 +252,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 if (dataSnapshot.getChildrenCount() > 0) {
                     progress.dismiss();
                     mUserName.setError("Username already exist, try another.");
-                    Toast.makeText(RegistrationActivity.this, "User already exist.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistrationActivity.this, "UserSD already exist.", Toast.LENGTH_SHORT).show();
                 } else {
                     createFirebaseUser();
 //                    saveUserInfo();
@@ -337,8 +337,8 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         if (e instanceof FirebaseAuthUserCollisionException) {
-                            Toast.makeText(getApplicationContext(), "User Already exist", Toast.LENGTH_SHORT).show();
-//                                updateStatus("User Already exist");
+                            Toast.makeText(getApplicationContext(), "UserSD Already exist", Toast.LENGTH_SHORT).show();
+//                                updateStatus("UserSD Already exist");
                         } else {
                             Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 //                                updateStatus(e.getLocalizedMessage());
@@ -363,6 +363,7 @@ public class RegistrationActivity extends AppCompatActivity {
         /*if(firebaseUser!=null) {*/
         DatabaseReference userDB = FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseUser.getUid());
         Map dataMap = new HashMap();
+        dataMap.put("id", firebaseUser.getUid());
         dataMap.put("name", name);
         dataMap.put("bio", "Add bio from Edit Info");
         dataMap.put("email", email);
@@ -374,7 +375,7 @@ public class RegistrationActivity extends AppCompatActivity {
         dataMap.put("profileImageUrl", profileImg);
         userDB.setValue(dataMap);
         /*}else{
-            Toast.makeText(this, "Data saved failed: User not found.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Data saved failed: UserSD not found.", Toast.LENGTH_SHORT).show();
         }*/
 
        /* UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()

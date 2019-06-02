@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.achba.studenthub.Model.User;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -201,6 +202,9 @@ public class MainActivity extends AppCompatActivity
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                //Chat Related Modification
+                User user = dataSnapshot.getValue(User.class);
+                Toast.makeText(MainActivity.this, "Chat: "+user.getName(), Toast.LENGTH_SHORT).show();
                 if(dataSnapshot.exists()) {
                     String userName=dataSnapshot.child("userName").getValue(String.class);
                     String profileImageUrl=dataSnapshot.child("profileImageUrl").getValue(String.class);
@@ -216,7 +220,7 @@ public class MainActivity extends AppCompatActivity
                     nameDrawerHeader.setText(userName);
                 }/*else{
                     Toast.makeText(MainActivity.this, "Data retrieve Problem", Toast.LENGTH_SHORT).show();
-                }*/  // No need to show user about data error in dashboard
+                }*/  // No need to show userSD about data error in dashboard
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

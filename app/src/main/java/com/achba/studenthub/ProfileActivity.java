@@ -83,7 +83,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         /*progress = new ProgressDialog(this);
         progress.setTitle("Please Wait...");
-        progress.setMessage("Fetching User Data...");
+        progress.setMessage("Fetching UserSD Data...");
         progress.setCancelable(false);
         progress.show();*/
 
@@ -147,7 +147,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void onClickSeeMore(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
-        builder.setMessage("User hasn't added more About Info.")
+        builder.setMessage("UserSD hasn't added more About Info.")
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
