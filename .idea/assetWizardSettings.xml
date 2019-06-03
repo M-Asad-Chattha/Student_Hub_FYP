@@ -225,7 +225,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/A:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/social/ic_school_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/A:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_send_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -235,9 +235,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
-                            <entry key="opacityPercent" value="97" />
-                            <entry key="outputName" value="ic_cap" />
+                            <entry key="color" value="2ac8cc" />
+                            <entry key="opacityPercent" value="95" />
+                            <entry key="outputName" value="ic_send" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\Asad Chattha\Desktop\method-draw-image.svg" />
                           </map>

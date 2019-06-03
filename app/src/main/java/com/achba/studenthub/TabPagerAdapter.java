@@ -28,8 +28,8 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
                 NotificationFragment notificationFragment = new NotificationFragment();
                 return notificationFragment;
             case 2:
-                MessageFragment messageFragment = new MessageFragment();
-                return messageFragment;
+                ChatFragment chatFragment = new ChatFragment();
+                return chatFragment;
         }
         return null;
     }
