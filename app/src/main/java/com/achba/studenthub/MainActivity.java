@@ -59,9 +59,48 @@ public class MainActivity extends AppCompatActivity
 
         final TabLayout tabLayout = findViewById(R.id.tabLayout);
         final ViewPager viewPager = findViewById(R.id.viewPager);
-        TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(adapter);
+        final TabPagerAdapter pagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
+//        viewPager.setAdapter(pagerAdapter);
+//        tabLayout.setupWithViewPager(viewPager);
+
+        //Cutomized PagerAdapter call
+        //below wxperiment for end fragment loading delay
+        pagerAdapter.addFragment(new DashboardFragment(), "Dashboard");
+        pagerAdapter.addFragment(new NotificationFragment(), "Notification");
+        viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+        reference = FirebaseDatabase.getInstance().getReference("Chats");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                TabPagerAdapter viewPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
+                int unread = 0;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Chat chat = snapshot.getValue(Chat.class);
+                    if (chat.getReceiver().equals(firebaseUser.getUid()) && !chat.isIsseen()){
+                        unread++;
+                    }
+                }
+                /*viewPagerAdapter.addFragment(new DashboardFragment(), "Dashboard");
+                viewPagerAdapter.addFragment(new NotificationFragment(), "Notification");*/
+                if (unread == 0){
+                    pagerAdapter.addFragment(new ChatFragment(), "Chats");
+                } else {
+                    pagerAdapter.addFragment(new ChatFragment(), "("+unread+") Chats");
+                }
+
+                viewPager.setAdapter(pagerAdapter);
+
+                tabLayout.setupWithViewPager(viewPager);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -80,38 +119,6 @@ public class MainActivity extends AppCompatActivity
 
         userinfoDrawerLayout();
         vibrationMood();
-
-        reference = FirebaseDatabase.getInstance().getReference("Chats");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                TabPagerAdapter viewPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
-                int unread = 0;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Chat chat = snapshot.getValue(Chat.class);
-                    if (chat.getReceiver().equals(firebaseUser.getUid()) && !chat.isIsseen()){
-                        unread++;
-                    }
-                }
-                viewPagerAdapter.addFragment(new DashboardFragment(), "Dashboard");
-                viewPagerAdapter.addFragment(new NotificationFragment(), "Notification");
-                if (unread == 0){
-                    viewPagerAdapter.addFragment(new ChatFragment(), "Chats");
-                } else {
-                    viewPagerAdapter.addFragment(new ChatFragment(), "("+unread+") Chats");
-                }
-
-                viewPager.setAdapter(viewPagerAdapter);
-
-                tabLayout.setupWithViewPager(viewPager);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
     @Override
