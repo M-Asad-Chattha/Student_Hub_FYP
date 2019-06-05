@@ -21,12 +21,11 @@
         android:text="hello"
         android:textSize="18sp" />
 
-    <!--<TextView
+    <TextView
+        android:id="@+id/txt_seen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txt_seen"
-        android:visibility="gone"
-        android:layout_below="@id/show_message"/>
--->
+        android:layout_below="@id/show_message"
+        android:visibility="gone" />
 
 </RelativeLayout>

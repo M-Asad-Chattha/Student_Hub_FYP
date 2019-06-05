@@ -132,10 +132,10 @@ public class MessageActivity extends AppCompatActivity {
         });
 
 
-//        seenMessage(userid);
+        seenMessage(userid);
     }
 
-    /*private void seenMessage(final String userid){
+    private void seenMessage(final String userid){
         reference = FirebaseDatabase.getInstance().getReference("Chats");
         seenListener = reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -155,7 +155,7 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 
     private void sendMessage(String sender, final String receiver, String message) {
 
@@ -165,7 +165,7 @@ public class MessageActivity extends AppCompatActivity {
         hashMap.put("sender", sender);
         hashMap.put("receiver", receiver);
         hashMap.put("message", message);
-//        hashMap.put("isseen", false);
+        hashMap.put("isseen", false);
 
         reference.child("Chats").push().setValue(hashMap);
 
@@ -305,7 +305,7 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-//        reference.removeEventListener(seenListener);
+        reference.removeEventListener(seenListener);
         status("offline");
 //        currentUser("none");
     }

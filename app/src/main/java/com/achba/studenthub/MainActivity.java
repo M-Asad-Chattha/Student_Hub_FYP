@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity
                     RequestOptions requestOptions = new RequestOptions();
                     requestOptions.placeholder(R.drawable.profileimg_placeholder);
                     requestOptions.error(R.drawable.profileimg_placeholder);
-                    Glide.with(MainActivity.this)
+                    Glide.with(getApplicationContext())
                             .setDefaultRequestOptions(requestOptions)
                             .load(imageUrl)
                             .into(imageView);
