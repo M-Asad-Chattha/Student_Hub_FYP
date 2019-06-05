@@ -21,14 +21,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private Context mContext;
     private List<User> mUsers;
-    //private boolean ischat;
+    private boolean ischat;
 
     String theLastMessage;
 
-    public UserAdapter(Context mContext, List<User> mUsers/*, boolean ischat*/){
+    public UserAdapter(Context mContext, List<User> mUsers, boolean ischat){
         this.mUsers = mUsers;
         this.mContext = mContext;
-        //this.ischat = ischat;
+        this.ischat = ischat;
     }
 
     @NonNull
@@ -49,19 +49,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             Glide.with(mContext).load(user.getProfileImageUrl()).into(holder.profile_image);
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mContext, MessageActivity.class);
-                intent.putExtra("userid", user.getId());
-                mContext.startActivity(intent);
-            }
-        });
         /*if (ischat){
             lastMessage(user.getId(), holder.last_msg);
         } else {
             holder.last_msg.setVisibility(View.GONE);
-        }
+        }*/
 
         if (ischat){
             if (user.getStatus().equals("online")){
@@ -76,7 +68,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             holder.img_off.setVisibility(View.GONE);
         }
 
-       */
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, MessageActivity.class);
+                intent.putExtra("userid", user.getId());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                mContext.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -88,18 +90,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         public TextView name;
         public ImageView profile_image;
-        /*private ImageView img_on;
+        private ImageView img_on;
         private ImageView img_off;
-        private TextView last_msg;*/
+//        private TextView last_msg;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.name);
             profile_image = itemView.findViewById(R.id.profile_image);
-            /*img_on = itemView.findViewById(R.id.img_on);
+            img_on = itemView.findViewById(R.id.img_on);
             img_off = itemView.findViewById(R.id.img_off);
-            last_msg = itemView.findViewById(R.id.last_msg);*/
+//            last_msg = itemView.findViewById(R.id.last_msg);
         }
     }
 

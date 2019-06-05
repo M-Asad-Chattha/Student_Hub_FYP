@@ -140,7 +140,7 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void onRegister(View view) {
-        hideKeyboard();
+//        hideKeyboard();
         attemptLogin();
     }
 
@@ -365,6 +365,7 @@ public class RegistrationActivity extends AppCompatActivity {
         Map dataMap = new HashMap();
         dataMap.put("id", firebaseUser.getUid());
         dataMap.put("name", name);
+        dataMap.put("search", name.toLowerCase());
         dataMap.put("bio", "Add bio from Edit Info");
         dataMap.put("email", email);
         dataMap.put("userName", userName);

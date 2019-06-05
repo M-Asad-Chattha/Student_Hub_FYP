@@ -23,7 +23,7 @@
         android:textColor="@android:color/black"
         android:textSize="18sp" />
 
-    <!--<com.mikhaellopez.circularimageview.CircularImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
         android:layout_width="15dp"
         android:layout_height="15dp"
         app:civ_border_width="10dp"
@@ -61,6 +61,6 @@
         android:id="@+id/last_msg"
         android:textColor="@color/colorPrimaryDark"
         android:layout_marginLeft="20dp"
-        android:maxLines="1"/>-->
+        android:maxLines="1"/>
 
 </RelativeLayout>

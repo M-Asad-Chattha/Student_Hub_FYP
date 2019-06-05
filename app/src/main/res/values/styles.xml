@@ -60,7 +60,7 @@
         <item name="colorControlHighlight">@android:color/white</item>
     </style>
 
-    <style name="AppTheme.NoActionBar.Message" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.NoActionBar.Custom" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorControlActivated">#ff0000</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>

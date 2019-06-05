@@ -3,6 +3,7 @@ package com.achba.studenthub;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -69,9 +70,9 @@ public class MessageActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // and this
-//                startActivity(new Intent(MessageActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                finish();
+                /*ViewPager mPager = findViewById(R.id.viewPager);
+                mPager.setCurrentItem(2, true);*/
+                startActivity(new Intent(MessageActivity.this, MainActivity.class));
             }
         });
 
@@ -98,7 +99,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 username.setText(user.getUserName());
-                if (user.getProfileImageUrl().equals("default")){
+                if (user.getProfileImageUrl().equals("default")) {
                     profile_image.setImageResource(R.drawable.profileimg_placeholder);
                 } else {
                     //and this
@@ -119,7 +120,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                notify = true;
                 String msg = text_send.getText().toString();
-                if (!msg.equals("")){
+                if (!msg.equals("")) {
 //                    btn_send.setEnabled(true);
                     sendMessage(fuser.getUid(), userid, msg);
                 } else {
@@ -129,8 +130,6 @@ public class MessageActivity extends AppCompatActivity {
                 text_send.setText("");
             }
         });
-
-
 
 
 //        seenMessage(userid);
@@ -158,7 +157,7 @@ public class MessageActivity extends AppCompatActivity {
         });
     }*/
 
-    private void sendMessage(String sender, final String receiver, String message){
+    private void sendMessage(String sender, final String receiver, String message) {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
@@ -254,7 +253,7 @@ public class MessageActivity extends AppCompatActivity {
         });
     }*/
 
-    private void readMesagges(final String myid, final String userid, final String imageurl){
+    private void readMesagges(final String myid, final String userid, final String imageurl) {
         mchat = new ArrayList<>();
 
         reference = FirebaseDatabase.getInstance().getReference("Chats");
@@ -262,10 +261,10 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mchat.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Chat chat = snapshot.getValue(Chat.class);
                     if (chat.getReceiver().equals(myid) && chat.getSender().equals(userid) ||
-                            chat.getReceiver().equals(userid) && chat.getSender().equals(myid)){
+                            chat.getReceiver().equals(userid) && chat.getSender().equals(myid)) {
                         mchat.add(chat);
                     }
 
@@ -285,7 +284,7 @@ public class MessageActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
         editor.putString("currentuser", userid);
         editor.apply();
-    }
+    }*/
 
     private void status(String status){
         reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
@@ -300,14 +299,14 @@ public class MessageActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         status("online");
-        currentUser(userid);
+//        currentUser(userid);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        reference.removeEventListener(seenListener);
+//        reference.removeEventListener(seenListener);
         status("offline");
-        currentUser("none");
-    }*/
+//        currentUser("none");
+    }
 }

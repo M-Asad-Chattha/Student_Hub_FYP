@@ -27,10 +27,13 @@
         android:roundIcon="@mipmap/ic_launcherd_demo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity
+            android:name=".UsersActivity"
+            android:theme="@style/AppTheme.NoActionBar.Custom"
+            android:label="Available Contacts"/>
         <activity
             android:name=".MessageActivity"
-            android:theme="@style/AppTheme.NoActionBar.Message"/>
+            android:theme="@style/AppTheme.NoActionBar.Custom" />
 
         <service
             android:name=".TimeTableIntentService"
