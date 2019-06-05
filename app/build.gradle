@@ -43,4 +43,9 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     api 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+
+    //add these libraries for new Chat message implementation
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.google.firebase:firebase-messaging:18.0.0'
 }

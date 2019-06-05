@@ -16,6 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.achba.studenthub.Adapter.MessageAdapter;
+import com.achba.studenthub.ChatNotifications.APIService;
+import com.achba.studenthub.ChatNotifications.Client;
+import com.achba.studenthub.ChatNotifications.Data;
+import com.achba.studenthub.ChatNotifications.MyResponse;
+import com.achba.studenthub.ChatNotifications.Sender;
+import com.achba.studenthub.ChatNotifications.Token;
 import com.achba.studenthub.Model.Chat;
 import com.achba.studenthub.Model.User;
 import com.bumptech.glide.Glide;
@@ -32,6 +38,10 @@ import com.mikhaellopez.circularimageview.CircularImageView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MessageActivity extends AppCompatActivity {
     CircularImageView profile_image;
@@ -54,7 +64,7 @@ public class MessageActivity extends AppCompatActivity {
 
     String userid;
 
-//    APIService apiService;
+    APIService apiService;
 
     boolean notify = false;
 
@@ -76,7 +86,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-//        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -118,7 +128,7 @@ public class MessageActivity extends AppCompatActivity {
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                notify = true;
+                notify = true;
                 String msg = text_send.getText().toString();
                 if (!msg.equals("")) {
 //                    btn_send.setEnabled(true);
@@ -171,7 +181,7 @@ public class MessageActivity extends AppCompatActivity {
 
 
         // add user to chat fragment
-       /* final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
+        final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
                 .child(fuser.getUid())
                 .child(userid);
 
@@ -189,10 +199,10 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
-        final DatabaseReference chatRefReceiver = FirebaseDatabase.getInstance().getReference("Chatlist")
+        /*final DatabaseReference chatRefReceiver = FirebaseDatabase.getInstance().getReference("Chatlist")
                 .child(userid)
                 .child(fuser.getUid());
-        chatRefReceiver.child("id").setValue(fuser.getUid());
+        chatRefReceiver.child("id").setValue(fuser.getUid());*/
 
         final String msg = message;
 
@@ -202,7 +212,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 if (notify) {
-//                    sendNotifiaction(receiver, user.getUsername(), msg);
+                    sendNotifiaction(receiver, user.getUserName(), msg);
                 }
                 notify = false;
             }
@@ -211,10 +221,10 @@ public class MessageActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
     }
 
-   /* private void sendNotifiaction(String receiver, final String username, final String message){
+    private void sendNotifiaction(String receiver, final String username, final String message){
         DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
         Query query = tokens.orderByKey().equalTo(receiver);
         query.addValueEventListener(new ValueEventListener() {
@@ -251,7 +261,7 @@ public class MessageActivity extends AppCompatActivity {
 
             }
         });
-    }*/
+    }
 
     private void readMesagges(final String myid, final String userid, final String imageurl) {
         mchat = new ArrayList<>();

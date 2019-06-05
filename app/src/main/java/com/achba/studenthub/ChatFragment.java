@@ -14,8 +14,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.achba.studenthub.Adapter.UserAdapter;
+import com.achba.studenthub.ChatNotifications.Token;
 import com.achba.studenthub.Decoration.SimpleDividerItemDecoration;
 import com.achba.studenthub.Model.Chat;
+import com.achba.studenthub.Model.Chatlist;
 import com.achba.studenthub.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +26,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,9 +36,10 @@ public class ChatFragment extends Fragment {
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
     private List<User> mUsers;
-    private List<String> usersList;
-    FirebaseUser fUser;
+
+    FirebaseUser fuser;
     DatabaseReference reference;
+    private List<Chatlist> usersList;
 
     private FloatingActionButton fab;
     private LinearLayout layoutPlaceHolder;
@@ -43,44 +47,31 @@ public class ChatFragment extends Fragment {
     public ChatFragment() {
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_chat, container, false);
-        recyclerView = view.findViewById(R.id.recycler_view);
-        fab = view.findViewById(R.id.fab);
         layoutPlaceHolder = view.findViewById(R.id.layout_placeHolder);
+        fab = view.findViewById(R.id.fab);
 
+        recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
 
-        /*DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-                new LinearLayoutManager(getContext()).getOrientation());
-        recyclerView.addItemDecoration(dividerItemDecoration);*/
-        fUser = FirebaseAuth.getInstance().getCurrentUser();
+        fuser = FirebaseAuth.getInstance().getCurrentUser();
+
         usersList = new ArrayList<>();
 
-        reference = FirebaseDatabase.getInstance().getReference("Chats");
+        reference = FirebaseDatabase.getInstance().getReference("Chatlist").child(fuser.getUid());
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usersList.clear();
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Chat chat=snapshot.getValue(Chat.class);
-
-                    if (chat.getSender().equals(fUser.getUid())) {
-                        /*recyclerView.setVisibility(View.VISIBLE);
-                        layoutPlaceHolder.setVisibility(View.GONE);*/
-                        usersList.add(chat.getReceiver());
-                    }
-                    if(chat.getReceiver().equals(fUser.getUid())){
-                        usersList.add(chat.getSender());
-                    }
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Chatlist chatlist = snapshot.getValue(Chatlist.class);
+                    usersList.add(chatlist);
                 }
-                readChats();
+                chatList();
             }
 
             @Override
@@ -88,6 +79,8 @@ public class ChatFragment extends Fragment {
 
             }
         });
+
+        updateToken(FirebaseInstanceId.getInstance().getToken());
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,34 +93,40 @@ public class ChatFragment extends Fragment {
         return view;
     }
 
-    private void readChats() {
-        mUsers = new ArrayList<>();
+    private void checkEmptyStatus() {
+        if(usersList.isEmpty()){
+            recyclerView.setVisibility(View.GONE);
+            layoutPlaceHolder.setVisibility(View.VISIBLE);
+        }else {
+            recyclerView.setVisibility(View.VISIBLE);
+            layoutPlaceHolder.setVisibility(View.GONE);
+        }
+    }
 
+    private void updateToken(String token){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
+        Token token1 = new Token(token);
+        reference.child(fuser.getUid()).setValue(token1);
+    }
+
+    private void chatList() {
+        checkEmptyStatus();
+        mUsers = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mUsers.clear();
-                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
-
-                    //Display 1 user from Chat
-                    for(String id: usersList){
-                        if(user.getId().equals(id)){
-                            if(mUsers.size() !=0){
-                                for(User user1: mUsers){
-                                    if(!user.getId().equals(user1.getId())){
-                                        mUsers.add(user);
-                                    }
-                                }
-                            }else {
-                                mUsers.add(user);
-                            }
+                    for (Chatlist chatlist : usersList){
+                        if (user.getId().equals(chatlist.getId())){
+                            mUsers.add(user);
                         }
                     }
-                    userAdapter = new UserAdapter(getContext(), mUsers, true);
-                    recyclerView.setAdapter(userAdapter);
                 }
+                userAdapter = new UserAdapter(getContext(), mUsers, true);
+                recyclerView.setAdapter(userAdapter);
             }
 
             @Override
@@ -137,37 +136,9 @@ public class ChatFragment extends Fragment {
         });
     }
 
-    /*private void readUsers() {
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users");
-
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                *//*if (search_users.getText().toString().equals("")) {*//*
-                    mUsers.clear();
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        User user=snapshot.getValue(User.class);
-
-                        assert user !=null;
-                        assert firebaseUser !=null;
-                        if (!user.getId().equals(firebaseUser.getUid())) {
-                            recyclerView.setVisibility(View.VISIBLE);
-                            layoutPlaceHolder.setVisibility(View.GONE);
-                            mUsers.add(user);
-                        }
-
-                    }
-
-                    userAdapter = new UserAdapter(getContext(), mUsers ,true);
-                    recyclerView.setAdapter(userAdapter);
-//              }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
+    @Override
+    public void onResume() {
+        super.onResume();
+        checkEmptyStatus();
+    }
 }
