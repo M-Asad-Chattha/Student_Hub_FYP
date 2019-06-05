@@ -6,10 +6,43 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
     String[] tabArray={"Dashboard", "Notification", "Chat"};
+    private ArrayList<Fragment> fragments;
+    private ArrayList<String> titles;
 
-    public TabPagerAdapter(FragmentManager fm) {
+    TabPagerAdapter(FragmentManager fm){
+        super(fm);
+        this.fragments = new ArrayList<>();
+        this.titles = new ArrayList<>();
+    }
+
+    @Override
+    public Fragment getItem(int position) {
+        return fragments.get(position);
+    }
+
+    @Override
+    public int getCount() {
+        return fragments.size();
+    }
+
+    public void addFragment(Fragment fragment, String title){
+        fragments.add(fragment);
+        titles.add(title);
+    }
+
+    // Ctrl + O
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles.get(position);
+    }
+
+    /*public TabPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -38,5 +71,5 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return tabArray.length;
-    }
+    }*/
 }

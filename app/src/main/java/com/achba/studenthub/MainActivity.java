@@ -1,19 +1,15 @@
 package com.achba.studenthub;
 
-import android.app.AlarmManager;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,15 +17,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.achba.studenthub.Model.Chat;
 import com.achba.studenthub.Model.User;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -50,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     ProgressDialog progress;
-    DatabaseReference databaseReference;
+    DatabaseReference reference;
     FirebaseUser firebaseUser;
     AudioManager audioManager;
 
@@ -62,11 +57,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TabLayout tabLayout = findViewById(R.id.tabLayout);
-        ViewPager pager = findViewById(R.id.viewPager);
+        final TabLayout tabLayout = findViewById(R.id.tabLayout);
+        final ViewPager viewPager = findViewById(R.id.viewPager);
         TabPagerAdapter adapter = new TabPagerAdapter(getSupportFragmentManager());
-        pager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(pager);
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -85,6 +80,38 @@ public class MainActivity extends AppCompatActivity
 
         userinfoDrawerLayout();
         vibrationMood();
+
+        reference = FirebaseDatabase.getInstance().getReference("Chats");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                TabPagerAdapter viewPagerAdapter = new TabPagerAdapter(getSupportFragmentManager());
+                int unread = 0;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Chat chat = snapshot.getValue(Chat.class);
+                    if (chat.getReceiver().equals(firebaseUser.getUid()) && !chat.isIsseen()){
+                        unread++;
+                    }
+                }
+                viewPagerAdapter.addFragment(new DashboardFragment(), "Dashboard");
+                viewPagerAdapter.addFragment(new NotificationFragment(), "Notification");
+                if (unread == 0){
+                    viewPagerAdapter.addFragment(new ChatFragment(), "Chats");
+                } else {
+                    viewPagerAdapter.addFragment(new ChatFragment(), "("+unread+") Chats");
+                }
+
+                viewPager.setAdapter(viewPagerAdapter);
+
+                tabLayout.setupWithViewPager(viewPager);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -212,8 +239,8 @@ public class MainActivity extends AppCompatActivity
         //        TextView emailDrawerHeader = (TextView) headerView.findViewById(R.id.email_drawerHeader);
 
         String userID=firebaseAuth.getCurrentUser().getUid();
-        databaseReference= FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+        reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Chat Related Modification
@@ -290,12 +317,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void status(String status){
-        databaseReference= FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("status", status);
 
-        databaseReference.updateChildren(hashMap);
+        reference.updateChildren(hashMap);
     }
 
     @Override
