@@ -80,7 +80,8 @@ public class MessageActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*ViewPager mPager = findViewById(R.id.viewPager);
+                /*For start MainActivity with chat fragment
+                ViewPager mPager = findViewById(R.id.viewPager);
                 mPager.setCurrentItem(2, true);*/
                 startActivity(new Intent(MessageActivity.this, MainActivity.class));
             }
