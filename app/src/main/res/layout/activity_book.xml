@@ -1,10 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/online_courses"
+    android:background="@drawable/background_blur_book"
     tools:context=".BookActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/btn_stanford"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/rounded_btn_stroke_selector"
+        android:onClick="onClickStanford"
+        android:text="Stanford Library" />
+
+    <Button
+        android:id="@+id/btn_punjabLibrary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_stanford"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/rounded_btn_stroke_selector"
+        android:onClick="onClickPunjabLibrary"
+        android:text="Punjab e-Library" />
+
+    <Button
+        android:id="@+id/btn_hec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_punjabLibrary"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/rounded_btn_stroke_selector"
+        android:onClick="onClickHEC"
+        android:text="HEC Library" />
+
+    <Button
+        android:id="@+id/btn_openLibrary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_hec"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/rounded_btn_stroke_selector"
+        android:onClick="onClickOpenLibrary"
+        android:text="Open Library" />
+
+
+</RelativeLayout>

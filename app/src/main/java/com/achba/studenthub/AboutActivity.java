@@ -24,8 +24,8 @@ public class AboutActivity extends AppCompatActivity {
         FancyAboutPage fancyAboutPage=findViewById(R.id.fancyaboutpage);
         fancyAboutPage.setCoverTintColor(Color.BLUE);  //Optional
         fancyAboutPage.setCover(R.drawable.coverimg);
-        fancyAboutPage.setName("Muhammad Asad Chattha");
-        fancyAboutPage.setDescription("Google Certified Associate Android Developer | Android App, Game, Web and Software Developer.");
+        fancyAboutPage.setName("ACHBA Developer Group");
+        fancyAboutPage.setDescription("Student facilitation Hub.");
         fancyAboutPage.setAppIcon(R.drawable.ic_book_large_web); //Pass your app icon image
         fancyAboutPage.setAppName("Smart Student Hub");
         fancyAboutPage.setVersionNameAsAppSubTitle("1.0");

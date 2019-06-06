@@ -259,8 +259,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         //firebaseAuth.addAuthStateListener(authStateListener);
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user.isEmailVerified()) {
+        FirebaseUser userSD = firebaseAuth.getCurrentUser();
+        if (userSD.isEmailVerified()) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }else{
@@ -321,7 +321,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_READ_CONTACTS = 0;
 
     *//**
-     * A dummy authentication store containing known user names and passwords.
+     * A dummy authentication store containing known userSD names and passwords.
      * TODO: remove after connecting to a real authentication system.
      *//*
     private static final String[] DUMMY_CREDENTIALS = new String[]{
@@ -447,7 +447,7 @@ public class LoginActivity extends AppCompatActivity {
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
+        // Check for a valid password, if the userSD entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
@@ -476,7 +476,7 @@ public class LoginActivity extends AppCompatActivity {
             focusView.requestFocus();
         } else {
             // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+            // perform the userSD login attempt.
             showProgress(true);
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
@@ -535,7 +535,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
-                // Retrieve data rows for the device user's 'profile' contact.
+                // Retrieve data rows for the device userSD's 'profile' contact.
                 Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
                         ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
 
@@ -545,7 +545,7 @@ public class LoginActivity extends AppCompatActivity {
                 .CONTENT_ITEM_TYPE},
 
                 // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
+                // a primary email address if the userSD hasn't specified one.
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
     }
 
@@ -593,7 +593,7 @@ public class LoginActivity extends AppCompatActivity {
 
     *//**
      * Represents an asynchronous login/registration task used to authenticate
-     * the user.
+     * the userSD.
      *//*
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 

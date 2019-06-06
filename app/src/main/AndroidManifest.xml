@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SET_ALARM" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -24,15 +28,45 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:label="Forget Password"
+            android:name=".UsersActivity"
+            android:theme="@style/AppTheme.NoActionBar.Custom"
+            android:label="Available Contacts"/>
+        <activity
+            android:name=".MessageActivity"
+            android:theme="@style/AppTheme.NoActionBar.Custom" />
+
+        <service
+            android:name=".TimeTableIntentService"
+            android:exported="false" />
+
+        <receiver
+            android:name=".TimeTableReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="sensor"
+            android:theme="@style/FinestWebViewTheme.Light.Fullscreen" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:label="Edit Profile"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name=".ForgetPasswordActivity"
-            android:theme="@style/ProfileTheme"/>
+            android:label="Forget Password"
+            android:theme="@style/ProfileTheme" />
         <activity
             android:name=".ProfileActivity"
+            android:label="Profile"
             android:theme="@style/ProfileTheme" />
         <activity
             android:name=".AboutActivity"
-            android:label="Profile"
+            android:label="About"
             android:theme="@style/ProfileTheme" />
         <activity
             android:name=".PreSplashActivity"
@@ -54,8 +88,7 @@
         </activity>
         <activity
             android:name=".ReminderActivity"
-            android:label="@string/title_activity_reminder"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_reminder" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
@@ -91,7 +124,8 @@
             android:label="@string/title_activity_timetable" />
         <activity
             android:name=".BookActivity"
-            android:label="@string/title_activity_book" />
+            android:label="@string/title_activity_book"
+            android:theme="@style/ProfileTheme" />
         <activity
             android:name=".GPAActivity"
             android:label="@string/title_activity_GPA" />
@@ -119,6 +153,24 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
+
+        <!--ChatNotification Services-->
+        <!--<service android:name=".ChatNotifications.MyFirebaseIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>-->
+
+        <service android:name=".ChatNotifications.MyFirebaseMessaging"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

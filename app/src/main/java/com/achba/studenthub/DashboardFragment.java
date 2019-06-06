@@ -74,14 +74,7 @@ public class DashboardFragment extends Fragment  {
         cardTimeTable.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(getContext(), TimetableActivity.class);
-                startActivity(intent);*/
-
-                Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
-                builder.appendPath("time");
-                ContentUris.appendId(builder, Calendar.getInstance().getTimeInMillis());
-                Intent intent = new Intent(Intent.ACTION_VIEW)
-                        .setData(builder.build());
+                Intent intent = new Intent(getContext(), TimetableActivity.class);
                 startActivity(intent);
             }
         });
@@ -90,12 +83,13 @@ public class DashboardFragment extends Fragment  {
         cardBooks.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(getContext(), BookActivity.class);
-                startActivity(intent);*/
-                String url = "http://digitallibrary.edu.pk";
+                Intent intent = new Intent(getContext(), BookActivity.class);
+                startActivity(intent);
+
+                /*String url = "http://digitallibrary.edu.pk";
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
-                startActivity(i);
+                startActivity(i);*/
             }
         });
 

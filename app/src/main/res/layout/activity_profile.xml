@@ -8,7 +8,14 @@
     android:background="@android:color/white"
     tools:context=".ProfileActivity">
 
-    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        android:id="@+id/layoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        >
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -39,7 +46,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="180dp"
                     android:layout_marginRight="10dp"
-                    android:src="@drawable/assignment"
+                    android:src="@drawable/profileimg_placeholder"
                     app:civ_border_color="#40FFFFFF"
                     app:civ_border_width="10dp" />
 
@@ -91,15 +98,17 @@
                     android:layout_marginTop="50dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_arrow_down" />
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_program" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="80dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -134,15 +143,17 @@
                     android:layout_marginTop="20dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_arrow_down" />
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ic_semester" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="80dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -176,15 +187,17 @@
                     android:layout_marginTop="20dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_arrow_down" />
+                        android:layout_marginLeft="17dp"
+                        android:src="@drawable/ic_section" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="80dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -218,15 +231,17 @@
                     android:layout_marginTop="20dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_arrow_down" />
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_campus" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="80dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -260,15 +275,16 @@
                     android:layout_marginTop="20dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_arrow_down" />
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_more" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="60dp"
+                        android:layout_marginLeft="80dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -277,10 +293,10 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:onClick="onClickSeeMore"
-                            android:singleLine="true"
+                            android:paddingLeft="10dp"
                             android:paddingTop="10dp"
                             android:paddingRight="10dp"
-                            android:paddingLeft="10dp"
+                            android:singleLine="true"
                             android:text="See More About Info "
                             android:textColor="@color/blue"
                             android:textSize="17sp" />
@@ -306,4 +322,12 @@
 
         </ScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"/>
 </RelativeLayout>

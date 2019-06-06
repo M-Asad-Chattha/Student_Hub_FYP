@@ -14,10 +14,17 @@
     <color name="colorSplash_large">#F97C3C</color>
 
     <color name="colorBrand">#2ac8cc</color>
+    <color name="colorBrandOpacity">#B42AC8CC</color>
 
     <color name="my_text_color">#ffffff</color>
     <color name="colorTransparent">#7a3c3c3d</color>
     <color name="colorTransparentOpacity">#6D0021FF</color>
 
     <color name="blue">#0000FF</color>
+
+    <!-- Edit Profile-->
+    <color name="colorPrimary_EditProfile">#FFFFFF</color>
+    <color name="colorPrimaryDark_EditProfile">#E6E6E6</color>
+    <color name="colorAccent_EditProfile">#D81B60</color>
+
 </resources>

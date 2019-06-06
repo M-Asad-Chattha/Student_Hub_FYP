@@ -11,4 +11,5 @@
         android:orderInCategory="100"
         android:title="Log Out"
         app:showAsAction="never" />
+
 </menu>
