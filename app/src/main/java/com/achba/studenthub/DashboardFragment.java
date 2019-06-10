@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.achba.studenthub.RoommateFinder.RoommateFinderStartActivity;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 
@@ -56,7 +57,7 @@ public class DashboardFragment extends Fragment  {
         cardRoommate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), RoommateActivity.class);
+                Intent intent = new Intent(getContext(), RoommateFinderStartActivity.class);
                 startActivity(intent);
             }
         });

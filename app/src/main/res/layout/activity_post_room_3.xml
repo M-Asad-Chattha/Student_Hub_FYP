@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".RoommateFinder.PostRoomActivity_3">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/layoutNext_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:id="@+id/layoutRoomType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Room Type" />
+
+                <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/segmentRoomType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    segmentedgroup:sc_border_width="2dp"
+                    segmentedgroup:sc_corner_radius="10dp">
+
+                    <RadioButton
+                        android:id="@+id/btnRoomType_flexible"
+                        style="@style/RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Flexible" />
+
+                    <RadioButton
+                        android:id="@+id/btnRoomType_private"
+                        style="@style/RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Private" />
+
+                    <RadioButton
+                        android:id="@+id/btnRoomType_Shared"
+                        style="@style/RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shared" />
+                </info.hoang8f.android.segmented.SegmentedGroup>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutRoommates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutRoomType"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:id="@+id/tvRoommates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Max # of Roommates" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvRoommates"
+                    android:text="Including yourself" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true">
+
+                    <Button
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/rounded_arithmetic_btn"
+                        android:onClick="onClickMinusRoommates"
+                        android:text="-"
+                        android:textColor="#2196F3" />
+
+                    <TextView
+                        android:id="@+id/tvRoommatesNumber"
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:text="2"
+                        android:textAlignment="center"
+                        android:textColor="#2196F3" />
+
+                    <Button
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:background="@drawable/rounded_arithmetic_btn"
+                        android:onClick="onClickPlusRoommates"
+                        android:text="+"
+                        android:textColor="#2196F3" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutRent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutRoommates"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Monthly Rent" />
+
+                <EditText
+                    android:id="@+id/etRent"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/rounded_button_stroke"
+                    android:gravity="center_vertical"
+                    android:hint="e.g. Rs5000"
+                    android:padding="10dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutAvailableDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutRent"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Available Date" />
+
+                <EditText
+                    android:id="@+id/etAvailableDate"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/rounded_button_stroke"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:gravity="center_vertical"
+                    android:hint="DD/MM/YY"
+                    android:onClick="onClickAvailableDate"
+                    android:padding="10dp" />
+            </RelativeLayout>
+
+            <!--<LinearLayout
+                android:id="@+id/layoutStudent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutBirthday"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Are You a student?" />
+
+                <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/segmentStudent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    segmentedgroup:sc_border_width="2dp"
+                    segmentedgroup:sc_corner_radius="10dp">
+
+                    <RadioButton
+                        android:id="@+id/btnYes"
+                        style="@style/RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/btnNo"
+                        style="@style/RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" />
+                </info.hoang8f.android.segmented.SegmentedGroup>
+            </LinearLayout>-->
+
+            <RelativeLayout
+                android:id="@+id/layoutTermLength"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutAvailableDate"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:text="Term Length" />
+                <Spinner
+                    android:id="@+id/spinnerTermLength"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/rounded_button_stroke"
+                    android:padding="10dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutNeighborhoods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutTermLength"
+                android:layout_marginTop="30dp"
+                android:background="#F5F3F3"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="Neighborhoods" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/ic_arrow_next" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvAmenities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutNeighborhoods"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="20dp"
+                android:text="Amenities"
+                android:textAlignment="center"
+                android:textColor="#CB000000"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:id="@+id/layoutAmenities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvAmenities"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutAmenitiesGroup_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="A/C" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Dishwasher" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Furnished" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Laundry" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutAmenitiesGroup_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layoutAmenitiesGroup_1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Parking" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Private Bath" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="N/A" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutAmenities"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rounded_button"
+                android:onClick="onClickNext"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

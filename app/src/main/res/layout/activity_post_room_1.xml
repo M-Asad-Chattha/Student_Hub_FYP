@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".RoommateFinder.PostRoomActivity_1">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:paddingBottom="10dp"
+            android:id="@+id/layoutNext1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/layoutGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Gender" />
+
+                <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/segmentGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    segmentedgroup:sc_border_width="2dp"
+                    segmentedgroup:sc_corner_radius="10dp">
+
+                    <RadioButton
+                        android:id="@+id/btnMale"
+                        style="@style/RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male" />
+
+                    <RadioButton
+                        android:id="@+id/btnFemale"
+                        style="@style/RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female" />
+                </info.hoang8f.android.segmented.SegmentedGroup>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutGender"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Year of Birth" />
+
+                <EditText
+                    android:id="@+id/etBirthday"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/rounded_button_stroke"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:gravity="center_vertical"
+                    android:hint="e.g. 1995"
+                    android:onClick="onClickBirthday"
+                    android:padding="10dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutStudent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutBirthday"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Are You a student?" />
+
+                <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/segmentStudent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    segmentedgroup:sc_border_width="2dp"
+                    segmentedgroup:sc_corner_radius="10dp">
+
+                    <RadioButton
+                        android:id="@+id/btnYes"
+                        style="@style/RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Yes" />
+
+                    <RadioButton
+                        android:id="@+id/btnNo"
+                        style="@style/RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No" />
+                </info.hoang8f.android.segmented.SegmentedGroup>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutNeighborhoods"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutStudent"
+                android:layout_marginTop="30dp"
+                android:background="#F5F3F3"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="College/University" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/ic_arrow_next" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutEmployer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutNeighborhoods"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:text="Employer" />
+
+                <EditText
+                    android:id="@+id/etEmployer"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/rounded_button_stroke"
+                    android:clickable="true"
+                    android:hint="e.g.Google"
+                    android:maxLines="1"
+                    android:onClick="onClickBirthday"
+                    android:padding="10dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvAmenities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutEmployer"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="20dp"
+                android:text="Hobbies"
+                android:textAlignment="center"
+                android:textColor="#CB000000"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layoutHobby"
+                android:layout_below="@id/tvAmenities"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutHobbyGroup_1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_1"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Art" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_2"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Book Worm" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_3"
+                        android:layout_width="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Foodie" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_4"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Gaming" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutHobbyGroup_2"
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/layoutHobbyGroup_1">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Movies" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Outdoors" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_7"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Parties" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_8"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Running" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutHobbyGroup_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/layoutHobbyGroup_2">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Socialization" />
+
+                    <CheckBox
+                        android:id="@+id/checkbox_10"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/checkbox_selector"
+                        android:button="@null"
+                        android:padding="5dp"
+                        android:text="Sports" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/rounded_button"
+                android:layout_below="@id/layoutHobby"
+                android:layout_marginTop="30dp"
+                android:text="Next"
+                android:onClick="onClickNext"
+                android:textColor="@android:color/white"
+                android:textAllCaps="false"
+                android:layout_marginRight="30dp"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

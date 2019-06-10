@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLogin(View view) {
-        hideKeyboard();
+//        hideKeyboard();
         attemptLogin();
     }
     @Override
