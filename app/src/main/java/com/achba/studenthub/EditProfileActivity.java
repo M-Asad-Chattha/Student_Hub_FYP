@@ -257,7 +257,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         DatabaseReference reference=FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
                         HashMap<String, Object> hashMap=new HashMap<>();
-                        hashMap.put("profileImageUrl", myUri);
+                        hashMap.put("imagr", myUri);
                         reference.updateChildren(hashMap);
                         progressDialog.dismiss();
 

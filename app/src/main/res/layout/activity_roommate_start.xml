@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/colorWhite"
     android:layout_height="match_parent"
-    tools:context=".RoommateFinder.RoommateFinderStartActivity">
+    tools:context=".RoommateFinder.RoommateStartActivity">
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/profile_image"

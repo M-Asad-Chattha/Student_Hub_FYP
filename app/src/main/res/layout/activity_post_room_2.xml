@@ -52,6 +52,7 @@
                     android:layout_marginRight="10dp"
                     android:background="@drawable/rounded_button_stroke"
                     android:padding="15dp"
+                    android:onClick="onClickIcon"
                     android:src="@drawable/ic_camera_1" />
 
                 <ImageView

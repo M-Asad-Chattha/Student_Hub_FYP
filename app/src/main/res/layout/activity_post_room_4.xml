@@ -46,6 +46,7 @@
                         style="@style/RadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="Yes" />
 
                     <RadioButton
@@ -86,6 +87,7 @@
                         android:id="@+id/btnPet_Yes"
                         style="@style/RadioButton"
                         android:layout_width="wrap_content"
+                        android:checked="true"
                         android:layout_height="wrap_content"
                         android:text="Yes" />
 
@@ -127,6 +129,7 @@
                         android:id="@+id/btnSmoking_Yes"
                         style="@style/RadioButton"
                         android:layout_width="wrap_content"
+                        android:checked="true"
                         android:layout_height="wrap_content"
                         android:text="Yes" />
 
@@ -168,6 +171,7 @@
                         android:id="@+id/btnClean_Yes"
                         style="@style/RadioButton"
                         android:layout_width="wrap_content"
+                        android:checked="true"
                         android:layout_height="wrap_content"
                         android:text="Yes" />
 
@@ -208,7 +212,7 @@
                     <RadioButton
                         android:id="@+id/btnNight_Yes"
                         style="@style/RadioButton"
-                        android:layout_width="wrap_content"
+                        android:checked="true"
                         android:layout_height="wrap_content"
                         android:text="Yes" />
 
@@ -265,15 +269,15 @@
                 android:id="@+id/etAbout"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:inputType="textMultiLine"
                 android:layout_below="@id/tvAbout"
                 android:layout_marginLeft="30dp"
-                android:gravity="top"
-                android:padding="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/rounded_button_stroke"
-                android:hint="(Example: Hello! Gujrat native. Afridis Fan. Love cooking and all things food. Lets chat!)" />
+                android:gravity="top"
+                android:hint="(Example: Hello! Gujrat native. Afridis Fan. Love cooking and all things food. Lets chat!)"
+                android:inputType="textMultiLine"
+                android:padding="10dp" />
 
 
             <Button

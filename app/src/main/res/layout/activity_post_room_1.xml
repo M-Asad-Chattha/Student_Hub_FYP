@@ -13,10 +13,11 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:paddingBottom="10dp"
             android:id="@+id/layoutNext1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:paddingBottom="10dp">
 
             <LinearLayout
                 android:id="@+id/layoutGender"
@@ -47,6 +48,7 @@
                         style="@style/RadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="Male" />
 
                     <RadioButton
@@ -113,17 +115,18 @@
                     segmentedgroup:sc_corner_radius="10dp">
 
                     <RadioButton
-                        android:id="@+id/btnYes"
+                        android:id="@+id/btnStudent_Yes"
                         style="@style/RadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Yes" />
 
                     <RadioButton
-                        android:id="@+id/btnNo"
+                        android:id="@+id/btnStudent_No"
                         style="@style/RadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:checked="true"
                         android:text="No" />
                 </info.hoang8f.android.segmented.SegmentedGroup>
             </LinearLayout>
@@ -198,9 +201,9 @@
                 android:textSize="18sp" />
 
             <RelativeLayout
+                android:id="@+id/layoutHobby"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/layoutHobby"
                 android:layout_below="@id/tvAmenities"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
@@ -208,16 +211,16 @@
 
                 <LinearLayout
                     android:id="@+id/layoutHobbyGroup_1"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp">
 
                     <CheckBox
                         android:id="@+id/checkbox_1"
-                        android:layout_marginRight="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/checkbox_selector"
                         android:button="@null"
                         android:padding="5dp"
@@ -226,8 +229,8 @@
                     <CheckBox
                         android:id="@+id/checkbox_2"
                         android:layout_width="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/checkbox_selector"
                         android:button="@null"
                         android:padding="5dp"
@@ -236,8 +239,8 @@
                     <CheckBox
                         android:id="@+id/checkbox_3"
                         android:layout_width="wrap_content"
-                        android:layout_marginRight="10dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/checkbox_selector"
                         android:button="@null"
                         android:padding="5dp"
@@ -245,9 +248,9 @@
 
                     <CheckBox
                         android:id="@+id/checkbox_4"
-                        android:layout_marginRight="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/checkbox_selector"
                         android:button="@null"
                         android:padding="5dp"
@@ -257,10 +260,10 @@
                 <LinearLayout
                     android:id="@+id/layoutHobbyGroup_2"
                     android:layout_width="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@id/layoutHobbyGroup_1">
+                    android:layout_below="@id/layoutHobbyGroup_1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp">
 
                     <CheckBox
                         android:id="@+id/checkbox_5"
@@ -284,9 +287,9 @@
 
                     <CheckBox
                         android:id="@+id/checkbox_7"
-                        android:layout_marginRight="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/checkbox_selector"
                         android:button="@null"
                         android:padding="5dp"
@@ -294,9 +297,9 @@
 
                     <CheckBox
                         android:id="@+id/checkbox_8"
-                        android:layout_marginRight="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:background="@drawable/checkbox_selector"
                         android:button="@null"
                         android:padding="5dp"
@@ -307,9 +310,9 @@
                     android:id="@+id/layoutHobbyGroup_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/layoutHobbyGroup_2"
                     android:layout_centerHorizontal="true"
-                    android:layout_below="@id/layoutHobbyGroup_2">
+                    android:layout_marginTop="10dp">
 
                     <CheckBox
                         android:id="@+id/checkbox_9"
@@ -323,10 +326,10 @@
 
                     <CheckBox
                         android:id="@+id/checkbox_10"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
                         android:background="@drawable/checkbox_selector"
                         android:button="@null"
                         android:padding="5dp"
@@ -337,15 +340,15 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:background="@drawable/rounded_button"
                 android:layout_below="@id/layoutHobby"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
-                android:text="Next"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rounded_button"
                 android:onClick="onClickNext"
-                android:textColor="@android:color/white"
+                android:text="Next"
                 android:textAllCaps="false"
-                android:layout_marginRight="30dp"/>
+                android:textColor="@android:color/white" />
 
         </RelativeLayout>
 

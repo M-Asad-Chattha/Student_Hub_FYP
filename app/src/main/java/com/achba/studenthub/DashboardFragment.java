@@ -1,23 +1,15 @@
 package com.achba.studenthub;
 
 
-import android.content.ContentUris;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.achba.studenthub.RoommateFinder.RoommateFinderStartActivity;
-import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
-import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
-
-import java.util.Calendar;
+import com.achba.studenthub.RoommateFinder.RoommateStartActivity;
 
 public class DashboardFragment extends Fragment  {
 
@@ -57,7 +49,7 @@ public class DashboardFragment extends Fragment  {
         cardRoommate.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), RoommateFinderStartActivity.class);
+                Intent intent = new Intent(getContext(), RoommateStartActivity.class);
                 startActivity(intent);
             }
         });

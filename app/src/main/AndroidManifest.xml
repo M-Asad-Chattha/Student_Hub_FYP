@@ -47,7 +47,7 @@
             android:name=".RoommateFinder.FindRoomActivity"
             android:label="Find a Room" />
         <activity
-            android:name=".RoommateFinder.RoommateFinderStartActivity"
+            android:name=".RoommateFinder.RoommateStartActivity"
             android:label="Roommate Finder" />
         <activity
             android:name=".UsersActivity"
