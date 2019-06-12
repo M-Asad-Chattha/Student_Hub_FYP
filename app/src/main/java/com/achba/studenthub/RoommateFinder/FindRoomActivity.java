@@ -57,7 +57,6 @@ public class FindRoomActivity extends AppCompatActivity {
 
                         assert user !=null;
                         assert firebaseUser !=null;
-                        mUsers.add(user);
                         if (!user.getId().equals(firebaseUser.getUid())) {
                             mUsers.add(user);
                         }

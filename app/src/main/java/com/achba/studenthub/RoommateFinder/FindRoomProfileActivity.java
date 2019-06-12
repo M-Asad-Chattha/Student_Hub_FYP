@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.achba.studenthub.MessageActivity;
 import com.achba.studenthub.Model.Roommate;
 import com.achba.studenthub.R;
 import com.bumptech.glide.Glide;
@@ -115,6 +116,9 @@ public class FindRoomProfileActivity extends AppCompatActivity {
     }
 
     public void onClickMessage(View view) {
-
+        Intent intent = new Intent(getApplicationContext(), MessageActivity.class);
+        intent.putExtra("userid", userID);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }
