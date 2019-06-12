@@ -20,7 +20,7 @@ import info.hoang8f.android.segmented.SegmentedGroup;
 
 public class PostRoomActivity_4 extends AppCompatActivity {
     SegmentedGroup segmentRelationship, segmentPet, segmentSmoking, segmentClean, segmentNight;
-    Boolean relationShip=true, pets=true, smoking=true, clean=true, nightOwl=true;
+    String relationShip="true", pets="true", smoking="true", clean="true", nightOwl="true";
     View focusView = null;
     EditText etAbout;
     String about;
@@ -31,7 +31,7 @@ public class PostRoomActivity_4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_room_4);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         segmentRelationship = findViewById(R.id.segmentRelationship);
         segmentPet = findViewById(R.id.segmentPet);
@@ -46,9 +46,9 @@ public class PostRoomActivity_4 extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.btnReationship_Yes) {
-                    relationShip = true;
+                    relationShip = "true";
                 } else if (checkedId == R.id.btnReationship_No) {
-                    relationShip = false;
+                    relationShip = "false";
                 }
             }
         });
@@ -58,9 +58,9 @@ public class PostRoomActivity_4 extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.btnPet_Yes) {
-                    pets = true;
+                    pets = "true";
                 } else if (checkedId == R.id.btnPet_No) {
-                    pets = false;
+                    pets = "false";
                 }
             }
         });
@@ -70,9 +70,9 @@ public class PostRoomActivity_4 extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.btnSmoking_Yes) {
-                    smoking = true;
+                    smoking = "true";
                 } else if (checkedId == R.id.btnSmoking_No) {
-                    smoking = false;
+                    smoking = "false";
                 }
             }
         });
@@ -82,9 +82,9 @@ public class PostRoomActivity_4 extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.btnClean_Yes) {
-                    clean = true;
+                    clean = "true";
                 } else if (checkedId == R.id.btnClean_No) {
-                    clean = false;
+                    clean = "false";
                 }
             }
         });
@@ -94,18 +94,23 @@ public class PostRoomActivity_4 extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.btnNight_Yes) {
-                    nightOwl = true;
+                    nightOwl = "true";
                 } else if (checkedId == R.id.btnNight_No) {
-                    nightOwl = false;
+                    nightOwl = "false";
                 }
             }
         });
     }
 
-    @Override
+    /*@Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 
     public void onClickNext(View view) {
@@ -122,8 +127,8 @@ public class PostRoomActivity_4 extends AppCompatActivity {
             focusView = etAbout;
             cancel = true;
         }
-        if (charNumber<100) {
-            etAbout.setError("About Info must contain 100 or more characters.");
+        if (charNumber<40) {
+            etAbout.setError("About Info must contain 40 or more characters.");
             focusView = etAbout;
             cancel = true;
         }

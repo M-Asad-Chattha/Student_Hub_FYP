@@ -56,7 +56,7 @@ public class PostRoomActivity_2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_room_2);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         bedRoom = findViewById(R.id.tvBedroom);
         bathRoom = findViewById(R.id.tvBathroom);
@@ -76,10 +76,15 @@ public class PostRoomActivity_2 extends AppCompatActivity {
         spinnerHome.setAdapter(adapterHome);
     }
 
-    @Override
+    /*@Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 
     public void onClickMinusBedroom(View view) {
@@ -217,12 +222,10 @@ public class PostRoomActivity_2 extends AppCompatActivity {
         String userID = firebaseUser.getUid();
         databaseReferenceRoommate = FirebaseDatabase.getInstance().getReference("Roommate").child(userID);
 
-
-
         HashMap dataMap = new HashMap();
         dataMap.put("homeType", spinnerHome.getSelectedItem().toString());
-        dataMap.put("bedRoom", bedRoomValue);
-        dataMap.put("bathRoom", bathRoomValue);
+        dataMap.put("bedRoom", Integer.toString(bedRoomValue));
+        dataMap.put("bathRoom", Integer.toString(bathRoomValue));
         databaseReferenceRoommate.updateChildren(dataMap);
 
         Intent intent = new Intent(this, PostRoomActivity_3.class);

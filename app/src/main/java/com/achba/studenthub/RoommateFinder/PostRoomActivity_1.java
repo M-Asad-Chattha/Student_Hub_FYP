@@ -2,6 +2,7 @@ package com.achba.studenthub.RoommateFinder;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,10 +15,18 @@ import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.achba.studenthub.MainActivity;
+import com.achba.studenthub.Model.User;
 import com.achba.studenthub.R;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,8 +48,10 @@ public class PostRoomActivity_1 extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     List<String> checkboxes;
     Boolean employerStatus = true;
-    DatabaseReference databaseReferenceRoommate;
-    String gender="Male", employer, birthDay;
+    DatabaseReference databaseReferenceRoommate, reference;
+    String gender="Male";
+    String employer, birthDay;
+    String name="Name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +74,7 @@ public class PostRoomActivity_1 extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,
                                   int dayOfMonth) {
-                // TODO Auto-generated method stub
                 myCalendar.set(Calendar.YEAR, year);
-                /*myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);*/
                 updateLabel();
             }
 
@@ -97,6 +105,7 @@ public class PostRoomActivity_1 extends AppCompatActivity {
                 }
             }
         });
+        userInfo();
     }
 
     @Override
@@ -135,10 +144,10 @@ public class PostRoomActivity_1 extends AppCompatActivity {
                 checkboxes.add(text);
             }
         }
-
+/*
         for (String ch : checkboxes) {
             System.out.println(ch);
-        }
+        }*/
     }
 
 
@@ -176,40 +185,61 @@ public class PostRoomActivity_1 extends AppCompatActivity {
             Toast.makeText(this, "Incorrect Input.", Toast.LENGTH_SHORT).show();
         } else {
             uploadData();
-            /*Intent intent = new Intent(this, PostRoomActivity_2.class);
-            startActivity(intent);*/
         }
     }
 
+    public String userInfo(){
+        String userID=firebaseAuth.getCurrentUser().getUid();
+        reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //Chat Related Modification
+//                User user = dataSnapshot.getValue(User.class);
+                if(dataSnapshot.exists()) {
+                    String userName=dataSnapshot.child("name").getValue(String.class);
+                    name = userName;
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+        return name;
+    }
+
     private void uploadData() {
+//        userInfo();
         String userID = firebaseAuth.getCurrentUser().getUid();
         databaseReferenceRoommate = FirebaseDatabase.getInstance().getReference("Roommate").child(userID);
 
         HashMap dataMap = new HashMap();
         dataMap.put("id", userID);
+        dataMap.put("name", userInfo());
         dataMap.put("gender", gender);
         dataMap.put("birthday", birthDay);
         dataMap.put("employer", employer);
         dataMap.put("hobbies", checkboxes);
-        dataMap.put("homeType", "default");
+        dataMap.put("imageURL", "http://diazworld.com/images/avatar-placeholder.png");
+        /*dataMap.put("homeType", "default");
         dataMap.put("bedRoom", "default");
         dataMap.put("bathRoom", "default");
-        dataMap.put("imageURL", "http://diazworld.com/images/avatar-placeholder.png");
         dataMap.put("roomType", "default");
         dataMap.put("roommates", "default");
         dataMap.put("rent", "default");
         dataMap.put("availableDate", "default");
         dataMap.put("termLength", "default");
-        dataMap.put("Amenities", "default");
+        dataMap.put("amenities", "default");
         dataMap.put("relationShip","default");
         dataMap.put("pets", "default");
         dataMap.put("smoking", "default");
         dataMap.put("clean", "default");
         dataMap.put("nightOwl", "default");
-        dataMap.put("about", "default");
+        dataMap.put("about", "default");*/
         databaseReferenceRoommate.setValue(dataMap);
 
         Intent intent = new Intent(this, PostRoomActivity_2.class);
         startActivity(intent);
     }
+
 }

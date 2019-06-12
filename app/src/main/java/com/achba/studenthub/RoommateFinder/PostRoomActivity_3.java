@@ -51,7 +51,7 @@ public class PostRoomActivity_3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_room_3);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         segmentRoomType = findViewById(R.id.segmentRoomType);
         spinnerTermLength = findViewById(R.id.spinnerTermLength);
@@ -105,10 +105,15 @@ public class PostRoomActivity_3 extends AppCompatActivity {
         etAvailableDate.setText(sdf.format(myCalendar.getTime()));
     }
 
-    @Override
+    /*@Override
     public boolean onSupportNavigateUp() {
         finish();
         return true;
+    }*/
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 
     public void onClickMinusRoommates(View view) {
@@ -194,11 +199,11 @@ public class PostRoomActivity_3 extends AppCompatActivity {
 
         HashMap dataMap = new HashMap();
         dataMap.put("roomType", roomType);
-        dataMap.put("roommates", roommatesValue);
+        dataMap.put("roommates", Integer.toString(roommatesValue));
         dataMap.put("rent", rent); //Update in _1 from here
         dataMap.put("availableDate", availableDate);
         dataMap.put("termLength", spinnerTermLengthValue);
-        dataMap.put("Amenities", checkboxes);
+        dataMap.put("amenities", checkboxes);
         databaseReferenceRoommate.updateChildren(dataMap);
 
         Intent intent = new Intent(this, PostRoomActivity_4.class);

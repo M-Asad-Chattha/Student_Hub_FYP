@@ -27,15 +27,15 @@
         android:roundIcon="@mipmap/ic_launcherd_demo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".RoommateFinder.FindRoomProfileActivity"></activity>
         <activity
             android:name=".RoommateFinder.PostRoomActivity_3"
             android:label="What Kind Of Place You Want"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".RoommateFinder.PostRoomActivity_4"
-            android:windowSoftInputMode="stateHidden"
-            android:label="Tell Us More About Yourself" />
+            android:label="Tell Us More About Yourself"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".RoommateFinder.PostRoomActivity_2"
             android:label="Post Your Room" />
@@ -102,12 +102,14 @@
         <activity
             android:name=".SplashActivity"
             android:theme="@style/ThemeFullSCreen" />
-            <!--<intent-filter>
+        <!--
+<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
+        </activity>
+        -->
         <activity
             android:name=".ReminderActivity"
             android:label="@string/title_activity_reminder" />
@@ -116,12 +118,14 @@
             android:label="@string/title_activity_login"
             android:theme="@style/ThemeFullSCreen"
             android:windowSoftInputMode="stateHidden" />
-            <!--<intent-filter android:label="@string/app_name">
+        <!--
+<intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>-->
+        </activity>
+        -->
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_home"
