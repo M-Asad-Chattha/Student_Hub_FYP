@@ -87,7 +87,7 @@
                 android:textAlignment="center" />
 
             <RelativeLayout
-                android:id="@+id/layoutAddress"
+                android:id="@+id/layoutAddressPlaceHolder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tv_4"
@@ -113,10 +113,66 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutHome"
+                android:id="@+id/layoutAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutAddressPlaceHolder"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Address" />
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/rounded_button_stroke"
+                    android:gravity="center_vertical"
+                    android:hint="Allena center, Gujrat"
+                    android:padding="10dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/layoutAddress"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Mobile number" />
+
+                <EditText
+                    android:id="@+id/etPhoneNumber"
+                    android:layout_width="130dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/rounded_button_stroke"
+                    android:gravity="center_vertical"
+                    android:hint="923484772547"
+                    android:padding="10dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutHome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layoutPhoneNumber"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp">

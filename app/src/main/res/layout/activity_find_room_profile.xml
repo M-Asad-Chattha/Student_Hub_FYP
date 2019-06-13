@@ -485,6 +485,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@android:color/darker_gray" />
 
+            <!--Work And Education-->
             <TextView
                 android:id="@+id/tvWorkAndEducationTitle"
                 android:layout_width="match_parent"
@@ -497,7 +498,7 @@
                 android:textAlignment="center"
                 android:textColor="#CB000000"
                 android:textSize="18sp" />
-            <!--Work and Education-->
+
             <RelativeLayout
                 android:id="@+id/layoutWorkAndEducation"
                 android:layout_width="match_parent"
@@ -564,12 +565,95 @@
                 android:layout_marginTop="30dp"
                 android:background="@android:color/darker_gray" />
 
+            <!--others-->
+            <TextView
+                android:id="@+id/tvOthersTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/line5"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="20dp"
+                android:text="Others"
+                android:textAlignment="center"
+                android:textColor="#CB000000"
+                android:textSize="18sp" />
+
+            <RelativeLayout
+                android:id="@+id/layoutOthers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvOthersTitle"
+                android:layout_marginTop="20dp">
+
+                <RelativeLayout
+                    android:id="@+id/layoutOthers_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ic_address" />
+
+                    <TextView
+                        android:id="@+id/tvAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="80dp"
+                        android:autoLink="map"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="Adress"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/layoutOthers_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/layoutOthers_1"
+                    android:layout_marginTop="7dp">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ic_phone" />
+
+                    <TextView
+                        android:id="@+id/tvPhoneNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="80dp"
+                        android:autoLink="phone"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:linksClickable="true"
+                        android:text="923484772547"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/line6"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/layoutOthers"
+                android:layout_marginTop="30dp"
+                android:background="@android:color/darker_gray" />
+
             <!--Hobbies-->
             <TextView
                 android:id="@+id/tvHobbyTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/line5"
+                android:layout_below="@id/line6"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="20dp"
@@ -721,8 +805,8 @@
                 android:layout_below="@id/layoutHobby"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="20dp"
                 android:layout_marginRight="30dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/rounded_button"
                 android:onClick="onClickMessage"
                 android:text="Message"

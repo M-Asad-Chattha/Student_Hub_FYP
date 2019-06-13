@@ -1,6 +1,7 @@
 package com.achba.studenthub.RoommateFinder;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 public class FindRoomProfileActivity extends AppCompatActivity {
     ImageView imageView;
     TextView aboutMe,roommate,rent, duration, availableDate, roomType, amenities, relationship, pets, smoking, clean,
-            nightOwl, student, employer;
+            nightOwl, student, employer, address, phoneNumber;
     Intent intent;
     String userID;
     DatabaseReference reference;
@@ -49,6 +50,8 @@ public class FindRoomProfileActivity extends AppCompatActivity {
         nightOwl = findViewById(R.id.tvNight);
         student = findViewById(R.id.tvStudent);
         employer = findViewById(R.id.tvEmployer);
+        address = findViewById(R.id.tvAddress);
+        phoneNumber = findViewById(R.id.tvPhoneNumber);
 
         intent = getIntent();
         userID = intent.getStringExtra("userID");
@@ -98,6 +101,8 @@ public class FindRoomProfileActivity extends AppCompatActivity {
                     clean.setText("Not a clean freak");
                 }
                 student.setText(user.getEmployer());
+                address.setText(user.getAddress());
+                phoneNumber.setText(user.getPhoneNumber());
 
                 // Hobbieses ll goes here
 
@@ -119,6 +124,12 @@ public class FindRoomProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MessageActivity.class);
         intent.putExtra("userid", userID);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    public void onClickPhoneNumber(View view) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:"+phoneNumber.getText().toString()));
         startActivity(intent);
     }
 }

@@ -27,16 +27,26 @@ public class Roommate {
     private String smoking ;
     private String termLength;
     private String name;
+    private String address;
+    private String phoneNumber;
 
     public Roommate() {
 
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public Roommate(String id, List<String> amenities, String about, String availableDate,
                     String bathRoom, String bedRoom, String birthday, String clean, String employer,
                     String gender, List<String> hobbies, String homeType, String imageURL, String nightOwl,
                     String pets, String relationShip, String rent, String roomType, String roommates,
-                    String smoking, String termLength, String name) {
+                    String smoking, String termLength, String name, String address, String phoneNumber) {
         this.id = id;
         this.amenities = amenities;
         this.about = about;
@@ -59,6 +69,8 @@ public class Roommate {
         this.smoking = smoking;
         this.termLength = termLength;
         this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getId() {

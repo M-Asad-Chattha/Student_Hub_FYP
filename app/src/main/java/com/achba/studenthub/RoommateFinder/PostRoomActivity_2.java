@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -41,7 +42,9 @@ import java.util.HashMap;
 public class PostRoomActivity_2 extends AppCompatActivity {
     private Spinner spinnerHome;
     TextView bedRoom, bathRoom;
+    EditText address, phoneNumber;
     int bathRoomValue, bedRoomValue;
+    String addressValue, phoneNumberValue;
     View focusView = null;
     ImageView imageView;
     private Uri imgUri;
@@ -56,11 +59,12 @@ public class PostRoomActivity_2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_room_2);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         bedRoom = findViewById(R.id.tvBedroom);
         bathRoom = findViewById(R.id.tvBathroom);
         imageView = findViewById(R.id.imageView_2);
+        address = findViewById(R.id.etAddress);
+        phoneNumber = findViewById(R.id.etPhoneNumber);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         storageRef = FirebaseStorage.getInstance().getReference("uploads");
@@ -203,7 +207,19 @@ public class PostRoomActivity_2 extends AppCompatActivity {
     private void attemptNext() {
         boolean cancel = false;
         spinnerHomeValue = spinnerHome.getSelectedItem().toString();
+        addressValue = address.getText().toString();
+        phoneNumberValue = phoneNumber.getText().toString();
 
+        if (TextUtils.isEmpty(addressValue)) {
+            address.setError(getString(R.string.error_field_required));
+            focusView = address;
+            cancel = true;
+        }
+        if (TextUtils.isEmpty(phoneNumberValue)) {
+            phoneNumber.setError(getString(R.string.error_field_required));
+            focusView = phoneNumber;
+            cancel = true;
+        }
         if (spinnerHomeValue.equals("e.g. Condo")) {
             ((TextView) spinnerHome.getSelectedView()).setError("Select one from drop down");
             focusView = spinnerHome;
@@ -218,7 +234,7 @@ public class PostRoomActivity_2 extends AppCompatActivity {
         }
     }
 
-    private void uploadData(){
+    private void uploadData() {
         String userID = firebaseUser.getUid();
         databaseReferenceRoommate = FirebaseDatabase.getInstance().getReference("Roommate").child(userID);
 
@@ -226,6 +242,8 @@ public class PostRoomActivity_2 extends AppCompatActivity {
         dataMap.put("homeType", spinnerHome.getSelectedItem().toString());
         dataMap.put("bedRoom", Integer.toString(bedRoomValue));
         dataMap.put("bathRoom", Integer.toString(bathRoomValue));
+        dataMap.put("address", addressValue);
+        dataMap.put("phoneNumber", phoneNumberValue);
         databaseReferenceRoommate.updateChildren(dataMap);
 
         Intent intent = new Intent(this, PostRoomActivity_3.class);
