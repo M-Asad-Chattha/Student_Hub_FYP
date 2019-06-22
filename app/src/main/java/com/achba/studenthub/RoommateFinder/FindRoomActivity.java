@@ -3,8 +3,11 @@ package com.achba.studenthub.RoommateFinder;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import com.achba.studenthub.Adapter.RoommateAdapter;
 import com.achba.studenthub.Adapter.UserAdapter;
@@ -27,7 +30,7 @@ public class FindRoomActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RoommateAdapter userAdapter;
     private List<Roommate> mUsers;
-
+    private LinearLayout layoutPlaceHolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,10 +38,12 @@ public class FindRoomActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = findViewById(R.id.recycler_view);
+        layoutPlaceHolder = findViewById(R.id.layout_placeHolder);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));
+//        recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));
+
 
         mUsers = new ArrayList<>();
 
@@ -57,15 +62,22 @@ public class FindRoomActivity extends AppCompatActivity {
 
                         assert user !=null;
                         assert firebaseUser !=null;
-                        mUsers.add(user);
                         if (!user.getId().equals(firebaseUser.getUid())) {
                             mUsers.add(user);
                         }
 
                     }
 
+                    if(!mUsers.isEmpty()){
+                    layoutPlaceHolder.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
                     userAdapter = new RoommateAdapter(FindRoomActivity.this, mUsers);
                     recyclerView.setAdapter(userAdapter);
+                    }
+                    else {
+                        recyclerView.setVisibility(View.GONE);
+                        layoutPlaceHolder.setVisibility(View.VISIBLE);
+                    }
                 }
 
             @Override

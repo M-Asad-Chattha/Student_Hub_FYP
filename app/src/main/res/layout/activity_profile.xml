@@ -12,7 +12,7 @@
         android:id="@+id/layoutContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         >
     <android.support.v4.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -65,7 +65,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/bio"
+                    android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/name"
@@ -81,7 +81,7 @@
                     style="N?android:textAppearanceSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/bio"
+                    android:layout_below="@id/description"
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="30dp"
@@ -102,7 +102,7 @@
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_program" />
+                        android:src="@drawable/ic_education" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -143,11 +143,11 @@
                     android:layout_marginTop="20dp">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="20dp"
-                        android:src="@drawable/ic_semester" />
+                        android:src="@drawable/ic_classroom" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -231,11 +231,11 @@
                     android:layout_marginTop="20dp">
 
                     <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_campus" />
+                        android:src="@drawable/ic_university" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -279,7 +279,7 @@
                         android:layout_height="50dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:src="@drawable/ic_more" />
+                        android:src="@drawable/ico_more" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -329,5 +329,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 </RelativeLayout>

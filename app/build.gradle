@@ -52,4 +52,10 @@ dependencies {
     implementation 'com.nex3z:flow-layout:1.2.4'
     implementation 'info.hoang8f:android-segmented:1.0.6'
 
+    //Reminder dependecied
+    implementation 'com.getbase:floatingactionbutton:1.9.0'
+    implementation 'com.wdullaer:materialdatetimepicker:1.2.1'
+    implementation 'com.bignerdranch.android:recyclerview-multiselect:0.2'
+    implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+
 }

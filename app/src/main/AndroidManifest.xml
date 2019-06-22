@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -28,7 +30,15 @@
         android:roundIcon="@mipmap/ic_launcherd_demo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RoommateFinder.FindRoomProfileActivity"></activity>
+        <activity
+            android:name=".Reminder.ReminderAddActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Reminder.ReminderEditActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".RoommateFinder.FindRoomProfileActivity" />
         <activity
             android:name=".RoommateFinder.PostRoomActivity_3"
             android:label="What Kind Of Place You Want"
@@ -39,7 +49,8 @@
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".RoommateFinder.PostRoomActivity_2"
-            android:label="Post Your Room" />
+            android:label="Post Your Room"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".RoommateFinder.PostRoomActivity_1"
             android:label="Tell Us About Yourself"
@@ -197,6 +208,13 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <receiver android:name=".Reminder.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".Reminder.AlarmReceiver"/>
     </application>
 
 </manifest>

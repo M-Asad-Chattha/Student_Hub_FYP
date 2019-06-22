@@ -52,6 +52,7 @@ public class RoommateAdapter extends RecyclerView.Adapter<RoommateAdapter.ViewHo
         final Roommate user = mUsers.get(position);
         holder.name.setText(user.getName());
         holder.employer.setText(user.getEmployer());
+        holder.address.setText(user.getAddress());
 
             Glide.with(mContext).load(user.getImageURL()).into(holder.imageView);
 
@@ -77,6 +78,7 @@ public class RoommateAdapter extends RecyclerView.Adapter<RoommateAdapter.ViewHo
 
         public TextView name;
         public TextView employer;
+        public TextView address;
         public CircularImageView imageView;
 
         public ViewHolder(View itemView) {
@@ -85,6 +87,7 @@ public class RoommateAdapter extends RecyclerView.Adapter<RoommateAdapter.ViewHo
             name = itemView.findViewById(R.id.name);
             employer = itemView.findViewById(R.id.employer);
             imageView = itemView.findViewById(R.id.profile_image);
+            address = itemView.findViewById(R.id.address);
         }
     }
 }

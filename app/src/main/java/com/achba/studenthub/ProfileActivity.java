@@ -111,7 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+        finish();
         return true;
     }
 
@@ -175,8 +175,7 @@ public class ProfileActivity extends AppCompatActivity {
                     String section = dataSnapshot.child("section").getValue(String.class);
                     String campus = dataSnapshot.child("campus").getValue(String.class);
 
-                    mName.setText(name);
-                    mBio.setText(bio);
+                    mName.setText(name);mBio.setText(bio);
                     mProgram.setText("Studies "+program+" at ");
                     mSemester.setText(semester);
                     mSection.setText(section);

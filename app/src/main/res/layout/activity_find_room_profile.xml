@@ -24,7 +24,7 @@
                 android:background="#141414"
                 android:keepScreenOn="false"
                 android:scaleType="centerCrop"
-                android:src="@drawable/background_blur_book" />
+                android:src="@drawable/placeholder_hotel" />
 
             <TextView
                 android:id="@+id/tvAboutMeTitle"

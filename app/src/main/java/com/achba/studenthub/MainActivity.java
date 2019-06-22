@@ -252,7 +252,6 @@ public class MainActivity extends AppCompatActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
                 //Chat Related Modification
                 User user = dataSnapshot.getValue(User.class);
-                Toast.makeText(MainActivity.this, "Chat: "+user.getName(), Toast.LENGTH_SHORT).show();
                 if(dataSnapshot.exists()) {
                     String userName=dataSnapshot.child("userName").getValue(String.class);
                     String profileImageUrl=dataSnapshot.child("profileImageUrl").getValue(String.class);

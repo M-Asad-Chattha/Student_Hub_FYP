@@ -23,10 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 public class RoommateStartActivity extends AppCompatActivity {
-    User user;
+    /*User user;
     CircularImageView imageView;
     DatabaseReference reference;
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +34,9 @@ public class RoommateStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_roommate_start);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        imageView = findViewById(R.id.profile_image);
-
+        /*imageView = findViewById(R.id.profile_image);
         firebaseAuth = FirebaseAuth.getInstance();
         String userID=firebaseAuth.getCurrentUser().getUid();
-
         reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -55,15 +53,14 @@ public class RoommateStartActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
-        });
-
-
+        });*/
 
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        finish();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         return true;
     }
 

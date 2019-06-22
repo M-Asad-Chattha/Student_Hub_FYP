@@ -35,17 +35,17 @@ public class AboutActivity extends AppCompatActivity {
                 "provide stuff which is helpful to students. " +
                 "Provide all student needed function at one place!\n\n");
         fancyAboutPage.addEmailLink("m.asad.chatthaa@gmail.com");
-        fancyAboutPage.addFacebookLink("https://www.facebook.com/shashanksinghal02");  //Add your facebook address url
-        fancyAboutPage.addTwitterLink("https://twitter.com/shashank020597");
-        fancyAboutPage.addLinkedinLink("https://www.linkedin.com/in/shashank-singhal-a87729b5/");
-        fancyAboutPage.addGitHubLink("https://github.com/Shashank02051997");
+        fancyAboutPage.addFacebookLink("https://www.facebook.com/muhammadasadchattha");  //Add your facebook address url
+        fancyAboutPage.addTwitterLink("https://twitter.com/iamasadchattha");
+        fancyAboutPage.addLinkedinLink("https://www.linkedin.com/in/muhammadasadchattha/");
+        fancyAboutPage.addGitHubLink("https://github.com/M-Asad-Chattha");
 
 
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        onBackPressed();
+        finish();
         return true;
     }
 }

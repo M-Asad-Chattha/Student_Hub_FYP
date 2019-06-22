@@ -67,7 +67,7 @@
             android:id="@+id/bio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Add bio" />
+            android:hint="Add description" />
     </android.support.design.widget.TextInputLayout>
 
     <LinearLayout

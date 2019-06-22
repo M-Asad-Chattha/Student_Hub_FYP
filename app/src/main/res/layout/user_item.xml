@@ -58,7 +58,7 @@
         android:layout_toRightOf="@id/profile_image"
         android:layout_marginTop="10dp"
         android:paddingTop="5dp"
-        android:id="@+id/last_msg"
+        android:id="@+id/time_stamp"
         android:textColor="@color/colorDarkGray"
         android:layout_marginLeft="10dp"
         android:maxLines="1"/>

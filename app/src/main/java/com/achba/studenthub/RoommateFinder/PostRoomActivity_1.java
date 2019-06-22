@@ -52,6 +52,7 @@ public class PostRoomActivity_1 extends AppCompatActivity {
     String gender="Male";
     String employer, birthDay;
     String name="Name";
+//    String profileImageUrl="default";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -220,7 +221,9 @@ public class PostRoomActivity_1 extends AppCompatActivity {
         dataMap.put("birthday", birthDay);
         dataMap.put("employer", employer);
         dataMap.put("hobbies", checkboxes);
-        dataMap.put("imageURL", "http://diazworld.com/images/avatar-placeholder.png");
+        dataMap.put("imageURL", "https://www.undercovertourist.com/static/images/hotel_placeholder.jpg");
+
+
         /*dataMap.put("homeType", "default");
         dataMap.put("bedRoom", "default");
         dataMap.put("bathRoom", "default");

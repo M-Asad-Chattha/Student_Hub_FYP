@@ -289,7 +289,7 @@
                 android:layout_marginRight="30dp"
                 android:background="@drawable/rounded_button"
                 android:onClick="onClickNext"
-                android:text="Next"
+                android:text="Finish"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white" />
 

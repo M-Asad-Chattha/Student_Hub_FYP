@@ -2,11 +2,14 @@ package com.achba.studenthub.RoommateFinder;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.achba.studenthub.MessageActivity;
@@ -26,13 +29,13 @@ public class FindRoomProfileActivity extends AppCompatActivity {
     Intent intent;
     String userID;
     DatabaseReference reference;
+    boolean isImageFitToScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_find_room_profile);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
 
         imageView = findViewById(R.id.imageView);
@@ -112,6 +115,14 @@ public class FindRoomProfileActivity extends AppCompatActivity {
 
             }
         });
+
+
+        /*imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fullScreen();
+            }
+        });*/
     }
 
     @Override
