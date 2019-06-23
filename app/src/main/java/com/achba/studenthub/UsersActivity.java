@@ -37,17 +37,17 @@ public class UsersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = findViewById(R.id.recycler_view);
-        mToolbar = findViewById(R.id.toolbar);
+
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));
 
-        setSupportActionBar(mToolbar);
-//        setSupportActionBar(mToolbar);
         mUsers = new ArrayList<>();
 
         readUsers();

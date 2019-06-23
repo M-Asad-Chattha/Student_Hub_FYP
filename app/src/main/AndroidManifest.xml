@@ -192,7 +192,7 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" /> <!-- ChatNotification Services -->
         <!--
-<service android:name=".ChatNotifications.MyFirebaseIdService"
+        <service android:name=".ChatNotifications.MyFirebaseIdService"
             android:enabled="true"
             android:exported="true">
             <intent-filter>

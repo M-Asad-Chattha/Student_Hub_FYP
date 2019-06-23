@@ -45,10 +45,7 @@
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/ic_menu_feedback"
                 android:title="Send feedback" />
-            <item
-                android:id="@+id/nav_help"
-                android:icon="@drawable/ic_menu_help"
-                android:title="Help" />
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_menu_logout"

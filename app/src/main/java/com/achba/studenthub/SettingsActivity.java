@@ -126,6 +126,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
 
+
+
     /**
      * Set up the {@link android.app.ActionBar}, if the API is available.
      */

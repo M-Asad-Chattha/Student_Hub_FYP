@@ -197,20 +197,35 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_events) {
+            Intent intent = new Intent(this, ReminderActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_about) {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
+            Intent i=new Intent(android.content.Intent.ACTION_SEND);
+            i.setType("text/plain");
+            i.putExtra(android.content.Intent.EXTRA_SUBJECT,"Subject test");
+            i.putExtra(android.content.Intent.EXTRA_TEXT, "extra text that you want to put");
+            startActivity(Intent.createChooser(i,"Share Student Hub via"));
 
         } else if (id == R.id.nav_send) {
+            Intent intent = new Intent(getApplicationContext(), UsersActivity.class);
+            startActivity(intent);
 
         }else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
 
         }else if (id == R.id.nav_feedback) {
-
-        }else if (id == R.id.nav_help) {
+            Intent Email = new Intent(Intent.ACTION_SEND);
+            Email.setType("text/email");
+            Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "m.asad.chatthaa@gmail.com" });
+            Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback");
+            Email.putExtra(Intent.EXTRA_TEXT, "Dear Student Hub Team!" + "");
+            startActivity(Intent.createChooser(Email, "Send Feedback:"));
 
         }else if (id == R.id.nav_logout) {
             startLoading();
