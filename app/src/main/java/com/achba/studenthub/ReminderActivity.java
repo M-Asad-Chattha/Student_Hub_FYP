@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.AlarmClock;
@@ -64,6 +65,8 @@ public class ReminderActivity extends AppCompatActivity {
     private ReminderDatabase rb;
     private MultiSelector mMultiSelector = new MultiSelector();
     private AlarmReceiver mAlarmReceiver;
+
+    String TAG= "Item";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,11 +154,15 @@ public class ReminderActivity extends AppCompatActivity {
 
                     // Get the reminder id associated with the recycler view item
                     for (int i = IDmap.size(); i >= 0; i--) {
+
                         if (mMultiSelector.isSelected(i, 0)) {
+
                             int id = IDmap.get(i);
+//                            View view = mList.get(1); //This part may help to change color
 
                             // Get reminder from reminder database using id
                             Reminder temp = rb.getReminder(id);
+
                             // Delete reminder
                             rb.deleteReminder(temp);
                             // Remove reminder from recycler view
@@ -279,6 +286,7 @@ public class ReminderActivity extends AppCompatActivity {
         }
 
         public void setItemCount(int count) {
+
             mItems.clear();
             mItems.addAll(generateData(count));
             notifyDataSetChanged();
@@ -385,7 +393,6 @@ public class ReminderActivity extends AppCompatActivity {
                 if (!mMultiSelector.tapSelection(this)) {
                     mTempPost = mList.getChildAdapterPosition(v);
 
-
                     int mReminderClickID = IDmap.get(mTempPost);
                     selectReminder(mReminderClickID);
 
@@ -400,6 +407,9 @@ public class ReminderActivity extends AppCompatActivity {
                 AppCompatActivity activity = ReminderActivity.this;
                 activity.startSupportActionMode(mDeleteMode);
                 mMultiSelector.setSelected(this, true);
+//                v.setBackgroundColor(Color.GRAY);  //Chnage recyler item background todo recolor to white on cancel
+                Log.i(TAG, v.toString());
+
                 return true;
             }
 
@@ -437,9 +447,9 @@ public class ReminderActivity extends AppCompatActivity {
             // Set active image as on or off
             public void setActiveImage(String active) {
                 if (active.equals("true")) {
-                    mActiveImage.setImageResource(R.drawable.ic_cap);
+                    mActiveImage.setImageResource(R.drawable.ic_notifications_active);
                 } else if (active.equals("false")) {
-                    mActiveImage.setImageResource(R.drawable.ic_cap);
+                    mActiveImage.setImageResource(R.drawable.ic_notifications_off);
                 }
             }
         }
