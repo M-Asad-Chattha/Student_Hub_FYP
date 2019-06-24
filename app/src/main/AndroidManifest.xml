@@ -38,7 +38,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Reminder.ReminderAddActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:theme="@style/AppTheme.NoActionBar.Custom"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Reminder.ReminderEditActivity"

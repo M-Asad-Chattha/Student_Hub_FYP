@@ -116,7 +116,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     RequestOptions requestOptions = new RequestOptions();
                     requestOptions.placeholder(R.drawable.profileimg_placeholder);
                     requestOptions.error(R.drawable.profileimg_placeholder);
-                    Glide.with(EditProfileActivity.this)
+                    Glide.with(getApplicationContext())
                             .setDefaultRequestOptions(requestOptions)
                             .load(imgUri)
                             .into(profileImg);

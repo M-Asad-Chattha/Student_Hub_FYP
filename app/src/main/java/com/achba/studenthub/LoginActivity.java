@@ -252,7 +252,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(getApplicationContext(), "Incorrect password.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Incorrect password or email.", Toast.LENGTH_SHORT).show();
                             } else if (e instanceof FirebaseAuthInvalidUserException) {
                                 Toast.makeText(getApplicationContext(), "No account with this email.", Toast.LENGTH_SHORT).show();
                             } else {

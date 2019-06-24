@@ -111,7 +111,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        finish();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
         return true;
     }
 
@@ -185,7 +186,7 @@ public class ProfileActivity extends AppCompatActivity {
                     RequestOptions requestOptions = new RequestOptions();
                     requestOptions.placeholder(R.drawable.profileimg_placeholder);
                     requestOptions.error(R.drawable.profileimg_placeholder);
-                    Glide.with(ProfileActivity.this)
+                    Glide.with(getApplicationContext())
                             .setDefaultRequestOptions(requestOptions)
                             .load(imageUrl)
                             .into(profileImg);
