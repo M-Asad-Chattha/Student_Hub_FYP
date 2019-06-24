@@ -607,6 +607,8 @@
                         android:autoLink="map"
                         android:ellipsize="end"
                         android:singleLine="true"
+                        android:textColor="@color/colorBrand"
+                        android:onClick="onClickNumber"
                         android:text="Adress"
                         android:textSize="17sp" />
                 </RelativeLayout>
@@ -634,7 +636,8 @@
                         android:autoLink="phone"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:linksClickable="true"
+                        android:textColor="@color/colorBrand"
+                        android:onClick="onClickNumber"
                         android:text="923484772547"
                         android:textSize="17sp" />
                 </RelativeLayout>

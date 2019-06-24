@@ -613,8 +613,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="80dp"
+                        android:onClick="onClickLocation"
                         android:autoLink="map"
                         android:ellipsize="end"
+                        android:textColor="@color/colorBrand"
                         android:singleLine="true"
                         android:text="Adress"
                         android:textSize="17sp" />
@@ -642,10 +644,23 @@
                         android:layout_marginLeft="80dp"
                         android:autoLink="phone"
                         android:ellipsize="end"
-                        android:linksClickable="true"
+                        android:onClick="onClickPhoneNumber"
+                        android:textColor="@color/colorBrand"
                         android:singleLine="true"
                         android:text="923484772547"
                         android:textSize="17sp" />
+                   <!-- <TextView
+                        android:id="@+id/tvPhoneNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="80dp"
+                        android:autoLink="phone"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:linksClickable="true"
+                        android:text="923484772547"
+                        android:textSize="17sp" />-->
                 </RelativeLayout>
             </RelativeLayout>
 

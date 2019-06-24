@@ -57,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         mName=findViewById(R.id.name);
         profileImg = findViewById(R.id.profileImg);
-        mBio=findViewById(R.id.bio);
+        mBio=findViewById(R.id.description);
         mProgram=findViewById(R.id.tv_firstProgram);
         mSemester =findViewById(R.id.tv_secondSemester);
         mSection=findViewById(R.id.tv_secondSection);
@@ -175,7 +175,8 @@ public class ProfileActivity extends AppCompatActivity {
                     String section = dataSnapshot.child("section").getValue(String.class);
                     String campus = dataSnapshot.child("campus").getValue(String.class);
 
-                    mName.setText(name);mBio.setText(bio);
+                    mName.setText(name);
+                    mBio.setText(bio);
                     mProgram.setText("Studies "+program+" at ");
                     mSemester.setText(semester);
                     mSection.setText(section);

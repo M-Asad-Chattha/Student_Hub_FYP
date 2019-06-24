@@ -88,9 +88,23 @@ public class FindConveyanceProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void onClickPhoneNumber(View view) {
+    /*public void onClickPhoneNumber(View view) {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:"+phoneNumber.getText().toString()));
         startActivity(intent);
+    }*/
+
+    public void onClickPhoneNumber(View view) {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+
+        intent.setData(Uri.parse("tel:"+phoneNumber.getText().toString()));
+        startActivity(intent);
+
+    }
+
+    public void onClickLocation(View view) {
+        String map = "http://maps.google.co.in/maps?q=" + address.getText().toString();
+        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+        startActivity(i);
     }
 }

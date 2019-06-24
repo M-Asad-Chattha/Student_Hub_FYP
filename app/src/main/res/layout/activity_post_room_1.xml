@@ -180,10 +180,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:background="@drawable/rounded_button_stroke"
-                    android:clickable="true"
                     android:hint="e.g.Google"
                     android:maxLines="1"
-                    android:onClick="onClickBirthday"
                     android:padding="10dp" />
             </RelativeLayout>
 

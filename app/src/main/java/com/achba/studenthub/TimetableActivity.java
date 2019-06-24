@@ -56,7 +56,8 @@ public class TimetableActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("name").getValue(String.class);
                 String program = dataSnapshot.child("program").getValue(String.class);
-                String semester = dataSnapshot.child("semester").getValue(String.class);
+//                String semester = dataSnapshot.child("semester").getValue(String.class);
+                String semester = "1";
                 String section = dataSnapshot.child("section").getValue(String.class);
                 String campus = dataSnapshot.child("campus").getValue(String.class);
 
