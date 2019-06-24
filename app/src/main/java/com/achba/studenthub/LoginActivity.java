@@ -134,6 +134,14 @@ public class LoginActivity extends AppCompatActivity {
 //        hideKeyboard();
         attemptLogin();
     }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        Intent intent = new Intent(this, SplashActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.

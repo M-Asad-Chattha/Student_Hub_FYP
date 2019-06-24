@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        progress = new ProgressDialog(this);
+//        progress = new ProgressDialog(this);
         audioManager= (AudioManager) getBaseContext().getSystemService(Context.AUDIO_SERVICE);
 
 
@@ -161,6 +161,11 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         if (id == R.id.action_logout) {
+            /*progress = new ProgressDialog(this);
+            progress.setTitle("Please Wait...");
+            progress.setMessage("Processing your request...");
+            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.show();*/
             signOut();
             return true;
         }
@@ -170,18 +175,30 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void signOut() {
+        progress = new ProgressDialog(this);
+        progress.setTitle("Please Wait...");
+        progress.setMessage("Processing your request...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
         firebaseAuth.signOut();
+        Toast.makeText(getApplicationContext(), "Log Out Successfully.", Toast.LENGTH_SHORT).show();
+        progress.dismiss();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
 //        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (firebaseUser != null) {
-            stopLoading();
+        /*if (firebaseUser != null) {
+//            stopLoading();
+//            progress.dismiss();
             Toast.makeText(getApplicationContext(), "Log Out failed.", Toast.LENGTH_SHORT).show();
         } else {
-            stopLoading();
-            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+//            stopLoading();
+//            progress.dismiss();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             Toast.makeText(getApplicationContext(), "Log Out Successfully.", Toast.LENGTH_SHORT).show();
-        }
+        }*/
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -228,7 +245,11 @@ public class MainActivity extends AppCompatActivity
             startActivity(Intent.createChooser(Email, "Send Feedback:"));
 
         }else if (id == R.id.nav_logout) {
-            startLoading();
+            /*progress = new ProgressDialog(MainActivity.this);
+            progress.setTitle("Please Wait...");
+            progress.setMessage("Processing your request...");
+            progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+            progress.show();*/
             signOut();
         }
 
