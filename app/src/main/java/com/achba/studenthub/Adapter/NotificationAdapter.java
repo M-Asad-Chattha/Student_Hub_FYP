@@ -1,6 +1,8 @@
 package com.achba.studenthub.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -15,6 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.achba.studenthub.Conveyance.ConveyanceStartActivity;
+import com.achba.studenthub.Conveyance.FindConveyanceProfileActivity;
+import com.achba.studenthub.Conveyance.OfferConveyanceActivity;
 import com.achba.studenthub.MessageActivity;
 import com.achba.studenthub.Model.Chat;
 import com.achba.studenthub.Model.Notification;
@@ -104,6 +109,25 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     intent.putExtra("userID", notification.getId());
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
+                }
+                else if (notification.getType().equals("Conveyance") &&
+                        !(notification.getId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))){
+                    Intent intent = new Intent(mContext, FindConveyanceProfileActivity.class);
+                    intent.putExtra("userID", notification.getId());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                }
+               else if (notification.getType().equals("Admin")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setMessage(notification.getDescription())
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    return;
+                                }
+                            });
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 } else {
                     return;
                 }

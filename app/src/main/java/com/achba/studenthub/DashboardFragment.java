@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.achba.studenthub.Conveyance.ConveyanceStartActivity;
 import com.achba.studenthub.RoommateFinder.RoommateStartActivity;
 
 public class DashboardFragment extends Fragment  {
@@ -58,7 +59,7 @@ public class DashboardFragment extends Fragment  {
         cardConveyance.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MapsActivity.class);
+                Intent intent = new Intent(getContext(), ConveyanceStartActivity.class);
                 startActivity(intent);
             }
         });

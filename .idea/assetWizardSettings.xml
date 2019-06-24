@@ -235,11 +235,14 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="b7b7b7" />
+                            <entry key="height" value="512" />
                             <entry key="opacityPercent" value="90" />
-                            <entry key="outputName" value="ic_loop" />
+                            <entry key="outputName" value="ic_travel" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\Asad Chattha\Desktop\method-draw-image.svg" />
+                            <entry key="sourceFile" value="C:\Users\Asad Chattha\Desktop\Cartoon\201623.svg" />
+                            <entry key="width" value="512" />
                           </map>
                         </option>
                       </PersistentState>
