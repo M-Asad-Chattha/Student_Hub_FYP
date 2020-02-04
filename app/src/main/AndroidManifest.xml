@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.achba.studenthub">
+    package="com.achba.studenthub" >
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -14,7 +14,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -24,27 +23,22 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
-    <!--<uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true"/>-->
-
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcherd_demo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcherd_demo_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
+
         <activity
             android:name=".Reminder.ReminderAddActivity"
             android:theme="@style/AppTheme.NoActionBar.Custom"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Reminder.ReminderEditActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity
-            android:name=".RoommateFinder.FindRoomProfileActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RoommateFinder.FindRoomProfileActivity" />
         <activity
             android:name=".RoommateFinder.PostRoomActivity_3"
             android:label="What Kind Of Place You Want"
@@ -73,25 +67,20 @@
             android:theme="@style/AppTheme.NoActionBar.Custom" />
         <activity
             android:name=".MessageActivity"
-            android:theme="@style/AppTheme.NoActionBar.Custom" />
-
-        <!--Conveyance-->
+            android:theme="@style/AppTheme.NoActionBar.Custom" /> <!-- Conveyance -->
         <activity
             android:name=".Conveyance.ConveyanceStartActivity"
             android:label="Conveyance" />
-
         <activity
             android:name=".Conveyance.FindConveyanceActivity"
             android:label="Find Conveyance" />
         <activity
             android:name=".Conveyance.OfferConveyanceActivity"
             android:label="Add Information"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Conveyance.FindConveyanceProfileActivity"
             android:label="Conveyance" />
-
-
 
         <service
             android:name=".TimeTableIntentService"
@@ -128,7 +117,7 @@
             android:theme="@style/ProfileTheme" />
         <activity
             android:name=".PreSplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -215,11 +204,11 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <!--<meta-data
+        <!--
+<meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAzURiwGOpvXKq23hHHLOvEZkJ1IXehBbs"/>-->
-
-
+            android:value="AIzaSyAzURiwGOpvXKq23hHHLOvEZkJ1IXehBbs"/>
+        -->
         <!-- ChatNotification Services -->
         <!--
         <service android:name=".ChatNotifications.MyFirebaseIdService"
@@ -233,18 +222,18 @@
         <service
             android:name=".ChatNotifications.MyFirebaseMessaging"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <receiver android:name=".Reminder.BootReceiver">
+        <receiver android:name=".Reminder.BootReceiver" >
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".Reminder.AlarmReceiver"/>
+        <receiver android:name=".Reminder.AlarmReceiver" />
     </application>
 
 </manifest>

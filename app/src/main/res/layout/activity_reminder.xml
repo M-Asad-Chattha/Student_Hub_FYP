@@ -9,9 +9,10 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/reminder_list"
-        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <!-- android:layout_below="@+id/toolbar"         This line was emit as suggestion to error-->
 
     <TextView
         android:id="@+id/no_reminder_text"

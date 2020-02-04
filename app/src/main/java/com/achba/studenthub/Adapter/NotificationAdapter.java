@@ -71,7 +71,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         String description="<font color='DarkGray'>"+ notification.getDescription() +"</font>";
         String name ="<b>" + notification.getName() + "</b> " + description;
 
-        Toast.makeText(mContext, notification.getStatus(), Toast.LENGTH_SHORT).show();
         holder.time_stamp.setText(notification.getTimeStamp());
         holder.name.setText(Html.fromHtml(name));
             Glide.with(mContext).load(notification.getProfileImageUrl()).into(holder.profile_image);

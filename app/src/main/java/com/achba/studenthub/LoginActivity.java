@@ -64,6 +64,8 @@ import java.util.List;
 import static android.Manifest.permission.READ_CONTACTS;
 
 public class LoginActivity extends AppCompatActivity {
+    ProgressDialog progress;
+    LinearLayout layout;
     private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
@@ -71,8 +73,6 @@ public class LoginActivity extends AppCompatActivity {
     private View focusView = null;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
-    ProgressDialog progress;
-    LinearLayout layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,11 +92,9 @@ public class LoginActivity extends AppCompatActivity {
         mPasswordView = findViewById(R.id.password);
         layout = findViewById(R.id.layout);
 
-        layout.setOnTouchListener(new View.OnTouchListener()
-        {
+        layout.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent ev)
-            {
+            public boolean onTouch(View view, MotionEvent ev) {
                 hideKeyboard(view);
                 return false;
             }
@@ -105,10 +103,10 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        if (user !=null && user.isEmailVerified()) {
+        if (user != null && user.isEmailVerified()) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-        }else{
+        } else {
             return;
         }
 
@@ -137,20 +135,18 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
-        Intent intent = new Intent(this, SplashActivity.class);
-        startActivity(intent);
+        return;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.
                 INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         return true;
     }
 
-    public void hideKeyboard(){
+    public void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -158,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
                 InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    public void hideKeyboard(View view){
+    public void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
@@ -217,49 +213,49 @@ public class LoginActivity extends AppCompatActivity {
         /*if ((email.isEmpty() || password.isEmpty())) {
             Toast.makeText(this, "error: Fields are Empty", Toast.LENGTH_SHORT).show();
         } else {*/
-            firebaseAuth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            progress.dismiss();
-                            if (task.isSuccessful()) {
-                                if(firebaseAuth.getCurrentUser().isEmailVerified()){
-                                    updateStatus();
-                                    Toast.makeText(getApplicationContext(), "Login successfully.", Toast.LENGTH_SHORT).show();
-                                }else {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        progress.dismiss();
+                        if (task.isSuccessful()) {
+                            if (firebaseAuth.getCurrentUser().isEmailVerified()) {
+                                updateStatus();
+                                Toast.makeText(getApplicationContext(), "Login successfully.", Toast.LENGTH_SHORT).show();
+                            } else {
 
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                    builder.setMessage("Please verify your email address.")
-                                            .setCancelable(false)
-                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                public void onClick(DialogInterface dialog, int id) {
-                                                    //do things
-                                                }
-                                            });
-                                    AlertDialog alert = builder.create();
-                                    alert.show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                builder.setMessage("Please verify your email address.")
+                                        .setCancelable(false)
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                //do things
+                                            }
+                                        });
+                                AlertDialog alert = builder.create();
+                                alert.show();
 //                                    Toast.makeText(getApplicationContext(), "Please verify your email address.", Toast.LENGTH_SHORT).show();
-                                    resetFields();
-                                }
+                                resetFields();
+                            }
 
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Login failed.", Toast.LENGTH_SHORT).show();
-                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Login failed.", Toast.LENGTH_SHORT).show();
+                        }
 //                            updateStatus();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(getApplicationContext(), "Incorrect password or email.", Toast.LENGTH_SHORT).show();
+                        } else if (e instanceof FirebaseAuthInvalidUserException) {
+                            Toast.makeText(getApplicationContext(), "No account with this email.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            if (e instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(getApplicationContext(), "Incorrect password or email.", Toast.LENGTH_SHORT).show();
-                            } else if (e instanceof FirebaseAuthInvalidUserException) {
-                                Toast.makeText(getApplicationContext(), "No account with this email.", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                    }
+                });
         //}
     }
 
@@ -320,24 +316,42 @@ public class LoginActivity extends AppCompatActivity {
 }
 /**
  * A login screen that offers login via email/password.
+ * <p>
+ * Id to identity READ_CONTACTS permission request.
+ * <p>
+ * A dummy authentication store containing known userSD names and passwords.
+ * TODO: remove after connecting to a real authentication system.
+ * <p>
+ * Keep track of the login task to ensure we can cancel it if requested.
+ * <p>
+ * Callback received when a permissions request has been completed.
+ * <p>
+ * Attempts to sign in or register the account specified by the login form.
+ * If there are form errors (invalid email, missing fields, etc.), the
+ * errors are presented and no actual login attempt is made.
+ * <p>
+ * Shows the progress UI and hides the login form.
+ * <p>
+ * Represents an asynchronous login/registration task used to authenticate
+ * the userSD.
  */
 /*public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
-    *//**
-     * Id to identity READ_CONTACTS permission request.
-     *//*
+ *//**
+ * Id to identity READ_CONTACTS permission request.
+ *//*
     private static final int REQUEST_READ_CONTACTS = 0;
 
     *//**
-     * A dummy authentication store containing known userSD names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     *//*
+ * A dummy authentication store containing known userSD names and passwords.
+ * TODO: remove after connecting to a real authentication system.
+ *//*
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
     *//**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     *//*
+ * Keep track of the login task to ensure we can cancel it if requested.
+ *//*
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -421,8 +435,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     *//**
-     * Callback received when a permissions request has been completed.
-     *//*
+ * Callback received when a permissions request has been completed.
+ *//*
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -435,10 +449,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
     *//**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     *//*
+ * Attempts to sign in or register the account specified by the login form.
+ * If there are form errors (invalid email, missing fields, etc.), the
+ * errors are presented and no actual login attempt is made.
+ *//*
     private void attemptLogin() {
         if (mAuthTask != null) {
             return;
@@ -504,8 +518,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     *//**
-     * Shows the progress UI and hides the login form.
-     *//*
+ * Shows the progress UI and hides the login form.
+ *//*
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
@@ -600,9 +614,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     *//**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the userSD.
-     *//*
+ * Represents an asynchronous login/registration task used to authenticate
+ * the userSD.
+ *//*
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String mEmail;

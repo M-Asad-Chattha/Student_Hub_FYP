@@ -54,5 +54,16 @@
         android:onClick="onClickOpenLibrary"
         android:text="Open Library" />
 
+    <Button
+        android:id="@+id/btn_Cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_hec"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="175dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/rounded_btn_stroke_selector"
+        android:onClick="onClickfinish"
+        android:text="Cancel" />
 
 </RelativeLayout>

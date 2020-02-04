@@ -1,5 +1,6 @@
 package com.achba.studenthub;
 
+import android.content.IntentSender;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -45,4 +46,10 @@ public class BookActivity extends AppCompatActivity {
         new FinestWebView.Builder(this)
                 .show("https://elibrary.punjab.gov.pk");
     }
+
+    public void onClickfinish(View view) {
+        finish();
+
+    }
 }
+

@@ -47,6 +47,7 @@ dependencies {
     implementation 'com.thefinestartist:finestwebview:1.2.7'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
     api 'com.theartofdev.edmodo:android-image-cropper:2.7.0'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 

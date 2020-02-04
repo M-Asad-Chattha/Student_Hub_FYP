@@ -90,7 +90,7 @@
                 android:layout_marginRight="30dp"
                 android:background="@drawable/rounded_button"
                 android:onClick="onLogin"
-                android:text="@string/action_sign_in"
+                android:text="Login"
                 android:textColor="@color/colorWhite" />
 
             <Button
